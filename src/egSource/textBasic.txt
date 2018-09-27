@@ -1,0 +1,7 @@
+var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(this.loadedAssets[0]["texture"]));
+plane2.setShowInCameraState(Define.CAM_NORMAL, true);
+//plane2.setShowInCameraState(Define.CAM_PERTURBATION, true);
+//plane2.setShowInCameraState(Define.CAM_SHADOW, true);
+plane2.addPlugin(new aoi.PlunginSimple());
+
+plane2.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);

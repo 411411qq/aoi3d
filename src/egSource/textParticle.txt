@@ -1,0 +1,64 @@
+private buildParticleGeometry():aoi.ParticleSubGeometry
+{
+	var parNum:number = 50;
+	var p_geo:aoi.ParticleSubGeometry = new aoi.ParticleSubGeometry(4 * parNum, 6 * parNum);
+	for(var i:number = 0; i<parNum; i++)
+	{
+		var offsetIndex:number = i * 4;
+		p_geo.addIndex(0 + offsetIndex, 1 + offsetIndex, 2 + offsetIndex);
+		p_geo.addIndex(3 + offsetIndex, 2 + offsetIndex, 1 + offsetIndex);
+
+		p_geo.addVertexPos(-25, 25, 0, i);
+		p_geo.addVertexPos(-25, -25, 0, i);
+		p_geo.addVertexPos(25, 25, 0, i);
+		p_geo.addVertexPos(25, -25, 0, i);
+
+		p_geo.addVertexUv(1,0);
+		p_geo.addVertexUv(1,1);
+		p_geo.addVertexUv(0,0);
+		p_geo.addVertexUv(0,1);
+
+		var a1:number = math.MathUtil.getRandomNumberBetween(3,5);
+		var a2:number = math.MathUtil.getRandomNumberBetween(0.5, 1.5);
+		p_geo.addVertexOffsetTime(a1, a2);
+		p_geo.addVertexOffsetTime(a1, a2);
+		p_geo.addVertexOffsetTime(a1, a2);
+		p_geo.addVertexOffsetTime(a1, a2);
+
+		var a3:number = math.MathUtil.getRandomNumberBetween(0,0);
+		var a4:number = math.MathUtil.getRandomNumberBetween(0,0);
+		p_geo.addVertexOffsetPos(a3,a4, 0);
+		p_geo.addVertexOffsetPos(a3,a4, 0);
+		p_geo.addVertexOffsetPos(a3,a4, 0);
+		p_geo.addVertexOffsetPos(a3,a4, 0);
+
+		var a5:number = math.MathUtil.getRandomNumberBetween(-500,500);
+		var a6:number = math.MathUtil.getRandomNumberBetween(-500,500);
+		var a7:number = math.MathUtil.getRandomNumberBetween(-500,500);
+		var a8:number = math.MathUtil.getRandomNumberBetween(-30,30);
+		p_geo.addVertexSpeed(a5, a6, a7, a8);
+		p_geo.addVertexSpeed(a5, a6, a7, a8);
+		p_geo.addVertexSpeed(a5, a6, a7, a8);
+		p_geo.addVertexSpeed(a5, a6, a7, a8);
+	}
+
+	p_geo.buildGeometry();
+
+	return p_geo;
+}
+
+var geo:aoi.Geometry = new aoi.Geometry();
+geo.addSubGeometry(this.buildParticleGeometry());
+geo.animator = new aoi.ParticleAnimator();
+var mat:aoi.IMaterial = new aoi.Material(this.loadedAssets[0]["texture"]);
+
+this.planeMesh = new aoi.Mesh(geo, mat);
+this.planeMesh.y = 40;
+this.planeMesh.setShowInCameraState(Define.CAM_NORMAL, true);
+//this.planeMesh.setShowInCameraState(Define.CAM_SHADOW, true);
+this.planeMesh.addPlugin(new aoi.PlunginParticle());
+var ppm:aoi.PlunginParticleMove = new aoi.PlunginParticleMove();
+this.planeMesh.addPlugin(ppm);
+
+this.planeMesh.addPlugin(new aoi.PlunginBillboard());
+this.planeMesh.pluginCollector.setParamMode(PlunginDefine.NORMAL, true, false, false);

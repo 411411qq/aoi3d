@@ -1,0 +1,12 @@
+var geo:aoi.Geometry = this.loadedAssets[6]["geo"];
+var mat:aoi.IMaterial = new aoi.Material(this.loadedAssets[0]["texture"]);
+var meshObj:aoi.Mesh = new aoi.Mesh(geo, mat);
+meshObj.addPlugin(new aoi.PlunginSkeleten(geo.skeleton));
+meshObj.addPlugin(new PlunginKillAlpha(0, 0.5));
+
+geo.animator.addAction(1, this.loadedAssets[7]["clip"]);
+meshObj.animatorData.setAction(1, true);
+
+meshObj.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
+meshObj.setShowInCameraState(Define.CAM_NORMAL, true);
+this.scenceContainer.addChild(meshObj);
