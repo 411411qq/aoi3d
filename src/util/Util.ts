@@ -135,5 +135,10 @@ module base
                 return {x:mouseEvent.changedTouches[index].clientX, y:mouseEvent.changedTouches[index].clientY};
             }
         }
+        public static traceInfo(str:string)
+        {
+            var event:EventBase = new EventBase("TRACE_INFO", str);
+            aoi.GlobelConst.eventDispatcher.dispatchEvent(event);
+        }
     }
 }

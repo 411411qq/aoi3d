@@ -17,7 +17,7 @@ module aoi {
 
         constructor(targetObject:IController = null, lookAtObject:Object3DContainer = null, lookAtPosition:Vector3D = null,
                     panAngle:number = 0, tiltAngle:number = 90, distance:number = 1000, minTiltAngle:number = -90,
-                    maxTiltAngle:number = 90, minPanAngle:number = NaN, maxPanAngle:number = NaN, steps:number = 8,
+                    maxTiltAngle:number = 90, minPanAngle:number = 0, maxPanAngle:number = 360, steps:number = 8,
                     yFactor:number = 1, wrapPanAngle:boolean = false) {
             super(targetObject, lookAtObject, lookAtPosition);
             this.distance = distance;

@@ -52,5 +52,6 @@ module aoi {
         public static GAUSS_BLUR:number = 40;
         public static RIM_LIGHT:number = 41;
         public static HSV:number = 42;
+        public static SKY_BOX:number = 43;
     }
 }

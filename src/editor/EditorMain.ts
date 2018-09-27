@@ -80,6 +80,8 @@ module editor
             this._cameraController.tiltAngle = 20;
             this._cameraController.steps = 1;
 
+            //new aoi.InfoTrace();
+
             base.Util.loadScript("res/js/Stats.js");
         }
 
@@ -185,13 +187,14 @@ module editor
             AssetManager.instance.addAssetClass(AssetDefine.ASSET_MD5ANIM_BY, aoi.Md5AnimByAsset);
             AssetManager.instance.addAssetClass(AssetDefine.ASSET_SCENE, aoi.SceneAsset);
         }
-
         private onEnterFrame():void
         {
             if (this.move)
             {
-                this._cameraController.panAngle = 0.3 * (this.sx - this.lastMouseX) + this.lastPanAngle;
-                this._cameraController.tiltAngle = 0.3 * (this.sy - this.lastMouseY) + this.lastTiltAngle;
+                var cp = 0.3 * (this.sx - this.lastMouseX) + this.lastPanAngle;
+                var ct = 0.3 * (this.sy - this.lastMouseY) + this.lastTiltAngle;
+                this._cameraController.panAngle = cp;
+                this._cameraController.tiltAngle = ct;
                 this._cameraController.update();
             }
             this._view.render();
@@ -207,7 +210,7 @@ module editor
                     this.onMouseMove(evt.data);
                     break;
                 case "mouseup":
-                case "touchcancel":
+                case "touchend":
                     this.onMouseUp(evt.data);
                     break;
             }
@@ -220,6 +223,8 @@ module editor
             var mouseObj:Object = Util.getMousePos(e, 0);
             this.lastMouseX = mouseObj["x"];
             this.lastMouseY = mouseObj["y"];
+            this.sx = mouseObj["x"];
+            this.sy = mouseObj["y"];
             this.move = true;
         }
 

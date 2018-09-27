@@ -21,8 +21,8 @@ module aoi {
                 o = new SceneThing(sa.getGeo(list["geoName"]), list["textureName"]);
                 o.setShowInCameraState(Define.CAM_NORMAL, true);
                 (o as Mesh).addPlugin(new aoi.PlunginSimple());
-                (o as Mesh).addPlugin(new aoi.PlunginKillAlpha(0,0.5));
-                (o as Mesh).pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
+                (o as Mesh).addPlugin(new aoi.PlunginKillAlpha(0,0.7));
+                (o as Mesh).pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true, true);
             }
             o.name = list["name"];
             o.x = list["px"];

@@ -117,7 +117,7 @@ module aoi {
                 this.canvas.ontouchend = onClickCanvas;
                 this.canvas.ontouchmove = onClickCanvas;
                 this.canvas.ontouchstart = onClickCanvas;
-                this.canvas.ontouchcancel = onClickCanvas;
+                this.canvas.ontouchend = onClickCanvas;
             }
         }
 

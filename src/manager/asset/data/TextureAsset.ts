@@ -19,7 +19,7 @@ module aoi {
             img.onload = function () {
                 s.tm = new PicTexture(img);
                 s.tm.repreatType = 0;
-                s.tm.fiterType = 1;
+                s.tm.fiterType = 0;
                 window.URL.revokeObjectURL(img.src);
                 s.dispatchEvent(new base.EventBase(base.EventBase.COMPLETE));
             };
