@@ -30,7 +30,7 @@ module aoi {
             this.mouseY = 0;
             this.pixelRatio = 1;
             if (cam == null) {
-                var project = new PointProjection(20, 1000, w / h, 60);
+                var project = new PointProjection(20, 2000, w / h, 60);
                 this.camera = new Camera3D(0, 0, 2, project);
                 this.camera.z = -5800;
                 this.camera.y = 0;
@@ -170,7 +170,7 @@ module aoi {
 
             GlobelConst.tempValue ++;
             
-            this.gl.clearColor(0,0,0,1);
+            this.gl.clearColor(.5,.5,.5,1);
             this.gl.viewport(0, 0, this.width, this.height);
             this.gl.enable(this.gl.DEPTH_TEST);
             this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);

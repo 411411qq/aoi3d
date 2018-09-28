@@ -44,7 +44,7 @@ var aoi;
             this.initAttributeVariable(gl, program["a_Position"], buffer, 3, FSIZE * perLen, 0);
             gl.uniformMatrix4fv(program["u_MvpMatrix"], false, target.getFinalMatrix().elements);
             gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
-            gl.bindTexture(gl.TEXTURE_2D, target.material.getTextures(gl));
+            gl.bindTexture(gl.TEXTURE_CUBE_MAP, target.material.getTextures(gl));
             gl.uniform1i(program["u_Sampler"], this.txtIndex);
         };
         PlunginSkyBox.prototype.disactive = function (gl, program) {
@@ -57,12 +57,11 @@ var aoi;
         PlunginSkyBox.prototype.genVertexCode1 = function () {
             var str = 'attribute vec3 a_Position;\n' +
                 'uniform mat4 u_MvpMatrix;\n' +
-                'varying vec2 v_TexCoord;\n';
+                'varying vec3 v_WorldPosition;\n';
             return str;
         };
         PlunginSkyBox.prototype.genVertexCode2 = function () {
             var str = 'void main() {\n' +
-                'vec2 n_TexCoord = vec2(a_Position.x + 1.0, 1.0 - a_Position.y) / 2.0;\n' +
                 'vec4 n_Position = vec4(a_Position,1.0);\n';
             return str;
         };
@@ -73,7 +72,7 @@ var aoi;
             return str;
         };
         PlunginSkyBox.prototype.genVertexCode4 = function () {
-            var str = 'v_TexCoord = n_TexCoord;\n';
+            var str = "v_WorldPosition = a_Position.xyz;";
             return str;
         };
         PlunginSkyBox.prototype.genVertexCode5 = function () {
@@ -87,18 +86,17 @@ var aoi;
             return str;
         };
         PlunginSkyBox.prototype.genFramentCode2 = function () {
-            var str = 'varying vec2 v_TexCoord;\n' +
-                'uniform sampler2D u_Sampler;\n';
+            var str = 'varying vec3 v_WorldPosition;\n' +
+                'uniform samplerCube u_Sampler;\n';
             return str;
         };
         PlunginSkyBox.prototype.genFramentCode3 = function () {
             var str = 'void main() {\n';
-            str += "vec2 texCoord = v_TexCoord;\n";
             return str;
         };
         PlunginSkyBox.prototype.genFramentCode4 = function () {
             var str = "";
-            str += 'vec4 outcolor = texture2D(u_Sampler, texCoord);\n';
+            str += 'vec4 outcolor = textureCube( u_Sampler, vec3(v_WorldPosition.x, v_WorldPosition.yz ));\n';
             return str;
         };
         PlunginSkyBox.prototype.genFramentCode_normal = function () {

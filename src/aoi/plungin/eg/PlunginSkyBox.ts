@@ -37,7 +37,7 @@ module aoi {
             gl.uniformMatrix4fv(program["u_MvpMatrix"], false, target.getFinalMatrix().elements);
 
             gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
-            gl.bindTexture(gl.TEXTURE_2D, target.material.getTextures(gl));
+            gl.bindTexture(gl.TEXTURE_CUBE_MAP, target.material.getTextures(gl));
             gl.uniform1i(program["u_Sampler"], this.txtIndex);
         }
         public disactive(gl:WebGLRenderingContext, program:WebGLProgram):void { 
@@ -51,12 +51,11 @@ module aoi {
         {
             var str:string = 'attribute vec3 a_Position;\n' +
                 'uniform mat4 u_MvpMatrix;\n' +
-                'varying vec2 v_TexCoord;\n';
+                'varying vec3 v_WorldPosition;\n';
             return str;
         }
         private genVertexCode2():string {
             var str:string = 'void main() {\n' +
-                'vec2 n_TexCoord = vec2(a_Position.x + 1.0, 1.0 - a_Position.y) / 2.0;\n' + 
                 'vec4 n_Position = vec4(a_Position,1.0);\n';
             return str;
         }
@@ -67,7 +66,7 @@ module aoi {
             return str;
         }
         public genVertexCode4() {
-            var str = 'v_TexCoord = n_TexCoord;\n';
+            var str = "v_WorldPosition = a_Position.xyz;";
             return str;
         }
         private genVertexCode5():string {
@@ -81,18 +80,17 @@ module aoi {
             return str;
         }
         private genFramentCode2():string {
-            var str:string = 'varying vec2 v_TexCoord;\n' +
-                'uniform sampler2D u_Sampler;\n';
+            var str:string = 'varying vec3 v_WorldPosition;\n' +
+                'uniform samplerCube u_Sampler;\n';
             return str;
         }
         private genFramentCode3():string {
             var str:string = 'void main() {\n';
-            str += "vec2 texCoord = v_TexCoord;\n";
             return str;
         }
         private genFramentCode4():string {
             var str:string = "";
-            str += 'vec4 outcolor = texture2D(u_Sampler, texCoord);\n';
+            str += 'vec4 outcolor = textureCube( u_Sampler, vec3(v_WorldPosition.x, v_WorldPosition.yz ));\n';
             return str;
         }
         private genFramentCode_normal():string

@@ -1,26 +1,29 @@
 module aoi {
     export class ImageAsset extends AbstractAsset {
-        private blob:Blob;
-        private _srcData:string;
+        private _img:HTMLImageElement;
 
         constructor() {
             super();
+            this.needParser = 3;
         }
 
         public initData(loaderData:LoaderData):void {
             super.initData(loaderData);
-            this.blob = loaderData.data as Blob;
-            this._srcData = window.URL.createObjectURL(loaderData.data);
+            var temp = new Image();
+            var s = this;
+            temp.onload = function () {
+                window.URL.revokeObjectURL(temp.src);
+                s.dispatchEvent(new base.EventBase(base.EventBase.COMPLETE));
+            };
+            temp.src = window.URL.createObjectURL(loaderData.data);
+            this._img = temp;
         }
-
-        public get srcData():string {
-            return this._srcData;
+        public get img():HTMLImageElement {
+            return this._img;
         }
-
         public dispose():void {
             super.dispose();
-            this.blob = null;
-            this._srcData = null;
+            this._img = null;
         }
     }
 }
