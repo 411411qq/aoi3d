@@ -8,7 +8,7 @@ module aoi {
         private _txtIndex2:number;
         constructor() {
             super();
-            this.key = "Pertur";
+            this._key = "Pertur";
             this.limitNum = 1;
             this.type = PlunginDefine.PERTURBATION;
             this._data = new math.Vector3D(0.05,0.05, 0.06,0.06);

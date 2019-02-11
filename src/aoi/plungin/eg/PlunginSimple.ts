@@ -4,13 +4,13 @@ module aoi {
         private shadowVar:math.Vector3D;
         constructor() {
             super();
-            this.key = "simple";
+            this._key = "simple";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE;
             this.txtIndex = 0;
             this.shadowVar = new math.Vector3D();
         }
-
+        
         public updateCode(renderType:number):void {
             this._vertexCode.push(new OpenGlCodeVo(0, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(30000, this, this.genVertexCode2));
@@ -25,7 +25,7 @@ module aoi {
                 this._fragmentCode.push(new OpenGlCodeVo(30001, this, this.genFramentCode2_shadow));
             }
             this._fragmentCode.push(new OpenGlCodeVo(50000, this, this.genFramentCode3));
-            this._fragmentCode.push(new OpenGlCodeVo(70000, this, this.genFramentCode4));
+            
             if(renderType == Define.CAM_SHADOW)
             {
                 this._fragmentCode.push(new OpenGlCodeVo(90000, this, this.genFramentCode_shadow));
@@ -90,12 +90,6 @@ module aoi {
             return str;
         }
 
-        private genFramentCode4():string {
-            var str:string = "";
-            str += 'vec4 outcolor = texture2D(u_Sampler, texCoord);\n';
-            return str;
-        }
-
         private genFramentCode_shadow():string
         {
             var str:string = "float mv = max(outcolor.x, outcolor.y);\n";
@@ -123,7 +117,7 @@ module aoi {
         {
             var arr = new Array<IPlunginVo>();
             arr.push(new aoi.PlunginCaculateUV());
-            arr.push(new aoi.PlunginWorldPos());
+            arr.push(new aoi.PlunginDefaultTextureColor());
             return arr;
         }
 

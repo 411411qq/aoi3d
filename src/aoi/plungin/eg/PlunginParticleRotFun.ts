@@ -3,7 +3,7 @@ module aoi {
     export class PlunginParticleRotFun extends PlunginVoBase {
         constructor() {
             super();
-            this.key = "p_rf";
+            this._key = "p_rf";
             this.limitNum = 1;
             this.type = PlunginDefine.P_ROT_FUN;
         }

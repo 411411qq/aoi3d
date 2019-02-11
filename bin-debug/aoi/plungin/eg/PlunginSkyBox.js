@@ -13,7 +13,7 @@ var aoi;
         __extends(PlunginSkyBox, _super);
         function PlunginSkyBox() {
             var _this = _super.call(this) || this;
-            _this.key = "skyBox";
+            _this._key = "skyBox";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SKY_BOX;
             _this.txtIndex = 0;

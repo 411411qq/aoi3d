@@ -4,7 +4,7 @@ module aoi {
     {
         constructor() {
             super();
-            this.key = "n_t";
+            this._key = "n_t";
             this.type = PlunginDefine.NOR_AND_TAN;
             this.limitNum = 1;
         }

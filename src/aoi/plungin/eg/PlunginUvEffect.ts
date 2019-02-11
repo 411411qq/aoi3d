@@ -8,7 +8,7 @@ module aoi {
         constructor(faceNor:number = 0)
         {
             super();
-            this.key = "uveffect_" + faceNor;
+            this._key = "uveffect_" + faceNor;
             this.limitNum = 1;
             this.type = PlunginDefine.UV_EFFECT;
             this._speedData = new math.Vector3D(0.1,0.1,0.1,0.1);

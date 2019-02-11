@@ -4,7 +4,7 @@ module aoi {
         private shadowVar:math.Vector3D;
         constructor() {
             super();
-            this.key = "Particle";
+            this._key = "Par";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE;
             this.txtIndex = 0;

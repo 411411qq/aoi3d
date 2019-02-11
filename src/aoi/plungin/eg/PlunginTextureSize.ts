@@ -6,7 +6,7 @@ module aoi {
         constructor(type:number = 0, alpha:number = 0)
         {
             super();
-            this.key = "t_size";
+            this._key = "t_size";
             this.limitNum = 1;
             this.type = PlunginDefine.TEXTURE_SIZE;
             this._size = new Float32Array(2);
@@ -19,7 +19,7 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             var vec:math.Vector2D = target.material.getSize();
             this._size[0] = vec.x;
-            this._size[1] = vec.x;
+            this._size[1] = vec.y;
             gl.uniform2fv(program["u_textureSize"], this._size);
         }
         public updateCode(renderType:number):void {

@@ -15,7 +15,7 @@ var aoi;
             if (type === void 0) { type = 0; }
             if (alpha === void 0) { alpha = 0; }
             var _this = _super.call(this) || this;
-            _this.key = "t_size";
+            _this._key = "t_size";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.TEXTURE_SIZE;
             _this._size = new Float32Array(2);
@@ -29,7 +29,7 @@ var aoi;
         PlunginTextureSize.prototype.active = function (gl, subGeo, target, camera, program, renderType) {
             var vec = target.material.getSize();
             this._size[0] = vec.x;
-            this._size[1] = vec.x;
+            this._size[1] = vec.y;
             gl.uniform2fv(program["u_textureSize"], this._size);
         };
         PlunginTextureSize.prototype.updateCode = function (renderType) {

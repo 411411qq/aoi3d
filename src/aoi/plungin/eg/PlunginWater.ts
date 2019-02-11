@@ -6,7 +6,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "water";
+            this._key = "water";
             this.limitNum = 1;
             this.type = PlunginDefine.WATER;
             this.txtIndex = 0;

@@ -6,7 +6,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "const";
+            this._key = "const";
             this.limitNum = 1;
             this.type = PlunginDefine.C_CONST;
             this.txtIndex = 0;

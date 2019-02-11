@@ -13,6 +13,7 @@ module aoi {
         {
             var arr = new Array<IPlunginVo>();
             arr.push(new aoi.PlunginCaculateUV());
+            arr.push(new aoi.PlunginDefaultTextureColor());
             return arr;
         }
 
@@ -30,7 +31,6 @@ module aoi {
                 this._fragmentCode.push(new OpenGlCodeVo(30001, this, this.genFramentCode2_shadow));
             }
             this._fragmentCode.push(new OpenGlCodeVo(50000, this, this.genFramentCode3));
-            this._fragmentCode.push(new OpenGlCodeVo(70000, this, this.genFramentCode4));
             if(renderType == Define.CAM_SHADOW)
             {
                 this._fragmentCode.push(new OpenGlCodeVo(90000, this, this.genFramentCode_shadow));
@@ -196,11 +196,6 @@ module aoi {
         private genFramentCode3() {
             var str = 'void main() {\n';
             str += "vec2 texCoord = v_TexCoord;\n";
-            return str;
-        }
-
-        private genFramentCode4() {
-            var str = '  vec4 outcolor = texture2D(u_Sampler, texCoord);\n';
             return str;
         }
         private genFramentCode_shadow():string

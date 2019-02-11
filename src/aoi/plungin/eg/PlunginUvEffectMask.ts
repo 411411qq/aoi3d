@@ -5,7 +5,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "uveffect_m";
+            this._key = "uveffect_m";
             this.limitNum = 1;
             this.type = PlunginDefine.UV_EFFECT_MASK;
             this.txtIndex = 0;

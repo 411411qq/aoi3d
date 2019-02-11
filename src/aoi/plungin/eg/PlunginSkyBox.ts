@@ -3,7 +3,7 @@ module aoi {
     export class PlunginSkyBox extends PlunginVoBase {
         constructor() {
             super();
-            this.key = "skyBox";
+            this._key = "skyBox";
             this.limitNum = 1;
             this.type = PlunginDefine.SKY_BOX;
             this.txtIndex = 0;

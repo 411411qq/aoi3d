@@ -4,7 +4,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "uv_m";
+            this._key = "uv_m";
             this.limitNum = 1;
             this.type = PlunginDefine.UV_MASK_DATA;
         }

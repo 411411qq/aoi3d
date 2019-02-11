@@ -5,7 +5,7 @@ module aoi {
         protected dirLight:DirectionLight;
         constructor() {
             super();
-            this.key = "d_light";
+            this._key = "d_light";
             this.limitNum = 1;
             this.type = PlunginDefine.DIR_LIGHT;
         }

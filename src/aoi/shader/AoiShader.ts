@@ -94,7 +94,6 @@ module aoi {
                         this.m_program[o.name] = gl.getUniformLocation(this.m_program, o.name);
                     }
                 }
-                console.log('Frame buffer object is incomplete: getProgram' + this.name);
             }
             return this.m_program;
         }

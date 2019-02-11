@@ -3,7 +3,7 @@ module aoi {
     export class PlunginGray extends PlunginVoBase {
         constructor() {
             super();
-            this.key = "gray";
+            this._key = "gray";
             this.type = PlunginDefine.GRAY;
             this.limitNum = 1;
         }

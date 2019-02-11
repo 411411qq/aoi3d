@@ -4,7 +4,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "wp";
+            this._key = "wp";
             this.limitNum = 1;
             this.type = PlunginDefine.WORLD_POS;
             this.txtIndex = 0;

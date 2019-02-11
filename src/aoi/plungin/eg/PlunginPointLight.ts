@@ -5,7 +5,7 @@ module aoi {
         protected pointLight:PointLight;
         constructor() {
             super();
-            this.key = "p_light";
+            this._key = "p_light";
             this.limitNum = 1;
             this.type = PlunginDefine.POINT_LIGHT;
         }

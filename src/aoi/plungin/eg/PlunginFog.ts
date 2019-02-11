@@ -5,7 +5,7 @@ module aoi {
         private _data:math.Vector3D;
         constructor() {
             super();
-            this.key = "fog";
+            this._key = "fog";
             this.type = PlunginDefine.FOG;
             this.limitNum = 1;
             this._color = new base.Color(0,0,0,1);

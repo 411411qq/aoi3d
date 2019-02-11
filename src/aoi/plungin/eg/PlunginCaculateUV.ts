@@ -4,7 +4,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "c_uv";
+            this._key = "c_uv";
             this.limitNum = 1;
             this.type = PlunginDefine.C_UV;
         }

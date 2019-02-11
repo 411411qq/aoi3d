@@ -8,7 +8,7 @@ module aoi {
         constructor(b_type:number = 2) {
             super();
             this._blend_type = b_type;
-            this.key = "color_c" + b_type;
+            this._key = "color_c" + b_type;
             this.limitNum = 1;
             this.type = PlunginDefine.COLOR_CHANGE;
             this._color = new Float32Array(4);

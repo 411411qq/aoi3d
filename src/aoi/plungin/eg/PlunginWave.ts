@@ -5,7 +5,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "wave";
+            this._key = "wave";
             this.limitNum = 1;
             this.type = PlunginDefine.WAVE;
             this.data = new math.Vector3D(0,0,0,1);

@@ -9,9 +9,11 @@ module aoi {
         public priority:number;
         public index:number;
         public type:number;
-        public key:string;
+        protected _key:string;
         public limitNum:number;
         public txtIndex:number;
+        protected _replaceType:number = 0;
+        protected _replaceWeight:number = 0;
 
         constructor() {
             this.pColloct = null;
@@ -20,8 +22,12 @@ module aoi {
             this.priority = 0;
             this.index = 0;
             this.type = 0;
-            this.key = "";
+            this._key = "";
             this.limitNum = 1;
+        }
+        public get key():string
+        {
+            return this._key;
         }
         protected getParamName(pName:string):string
         {
@@ -34,7 +40,14 @@ module aoi {
                 this.updateCode(renderType);
             //}
         }
-
+        public getReplaceType():number
+        {
+            return this._replaceType;
+        }
+        public getReplaceWeight():number
+        {
+            return this._replaceWeight;
+        }
         protected updateCode(renderType:number):void {
 
         }

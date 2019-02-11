@@ -5,7 +5,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "uvoffset";
+            this._key = "uvoffset";
             this.limitNum = 1;
             this.type = PlunginDefine.UV_OFFSET;
             this._uvData = new Float32Array(4);

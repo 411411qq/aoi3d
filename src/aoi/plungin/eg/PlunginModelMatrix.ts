@@ -4,7 +4,7 @@ module aoi {
     {
         constructor() {
             super();
-            this.key = "mmx";
+            this._key = "mmx";
             this.type = PlunginDefine.MODEL_MATRIX;
             this.limitNum = 1;
         }

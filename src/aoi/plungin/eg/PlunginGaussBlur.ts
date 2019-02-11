@@ -5,7 +5,7 @@ module aoi {
         private _data:Float32Array;
         constructor() {
             super();
-            this.key = "g_b";
+            this._key = "gb";
             this.type = PlunginDefine.GAUSS_BLUR;
             this.limitNum = 1;
             this._data = new Float32Array(3);

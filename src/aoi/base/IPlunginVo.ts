@@ -13,5 +13,7 @@ module aoi {
         getAttArr():Array<any>;
         endPlungin():void;
         getPrePlungin():Array<IPlunginVo>;
+        getReplaceType():number;
+        getReplaceWeight():number;
     }
 }

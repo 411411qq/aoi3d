@@ -5,7 +5,7 @@ module aoi {
         constructor(amount:number = 0)
         {
             super();
-            this.key = "sepia";
+            this._key = "sepia";
             this.limitNum = 1;
             this.type = PlunginDefine.SEPIA;
             this._amount = 0;

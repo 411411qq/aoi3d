@@ -4,7 +4,7 @@ module aoi {
         private _norTexture:IMaterial;
         constructor() {
             super();
-            this.key = "NormalMap";
+            this._key = "NMap";
             this.limitNum = 1;
             this.type = PlunginDefine.NORMAL_MAP;
             this.txtIndex = 0;

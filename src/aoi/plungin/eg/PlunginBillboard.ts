@@ -5,7 +5,7 @@ module aoi {
 
         constructor() {
             super();
-            this.key = "bill";
+            this._key = "bill";
             this.type = PlunginDefine.P_BILL;
             this.limitNum = 1;
             this.tempM = math.MathUtil.TEMP_MATRIX;

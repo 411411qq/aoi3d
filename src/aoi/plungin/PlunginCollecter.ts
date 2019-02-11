@@ -136,8 +136,26 @@ module aoi {
 
         public addPlugin(vo:IPlunginVo):void {
             var temp = [], i = 0, len = this.plunginList.length, index;
-            for (i = 0; i < len; i++) {
-                if (this.plunginList[i].type == vo.type) {
+            let replaceType = vo.getReplaceType();
+            for (i = 0; i < len; i++) 
+            {
+                if(replaceType != 0 && replaceType == this.plunginList[i].getReplaceType())
+                {
+                    if(this.plunginList[i].getReplaceWeight() > vo.getReplaceWeight())
+                    {
+                        vo.dispose();
+                        return;
+                    }
+                    else
+                    {
+                        this.plunginList[i].dispose();
+                        this.plunginList.splice(i, 1);
+                        len --;
+                        i --;
+                    }
+                }
+                else if(this.plunginList[i].type == vo.type)
+                {
                     temp.push(this.plunginList[i]);
                 }
             }
@@ -243,11 +261,11 @@ module aoi {
                 for (i = 0; i < this.plunginList.length; i++) {
                     if(i == 0)
                     {
-                        m_shaderKey += this.plunginList[i].type;
+                        m_shaderKey += this.plunginList[i].key;
                     }
                     else
                     {
-                        m_shaderKey += "" + this.plunginList[i].type;
+                        m_shaderKey += "" + this.plunginList[i].key;
                     }
                 }
                 m_shaderKey += "_" + renderType;

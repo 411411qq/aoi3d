@@ -4,7 +4,7 @@ module aoi {
         private _color:Float32Array;
         constructor() {
             super();
-            this.key = "RimLight";
+            this._key = "RimLight";
             this.limitNum = 1;
             this.type = PlunginDefine.RIM_LIGHT;
             this.txtIndex = 0;

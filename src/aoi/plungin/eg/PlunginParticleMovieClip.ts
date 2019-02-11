@@ -4,7 +4,7 @@ module aoi {
         private m_data:math.Vector3D;
         constructor() {
             super();
-            this.key = "p_mc";
+            this._key = "p_mc";
             this.limitNum = 1;
             this.type = PlunginDefine.P_MOVIECLICP;
             this.m_data = new math.Vector3D();

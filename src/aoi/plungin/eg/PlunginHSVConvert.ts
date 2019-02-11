@@ -4,7 +4,7 @@ module aoi {
         private _datas:Float32Array;
         constructor(hue:number, saturation:number, bright:number) {
             super();
-            this.key = "HSVConvert";
+            this._key = "HSVConvert";
             this.type = PlunginDefine.HSV;
             this.limitNum = 1;
             this._datas = new Float32Array(3);

@@ -6,7 +6,7 @@ module aoi {
     	constructor(type:number = 0, alpha:number = 0)
         {
             super();
-            this.key = "ka";
+            this._key = "ka";
             this.limitNum = 1;
             this.type = PlunginDefine.KILL_ALPHA;
             this._alphas = new Float32Array(2);

@@ -6,7 +6,7 @@ module aoi {
         private _uicontainer:Object3DContainer;
         constructor() {
             super();
-            this.key = "mask";
+            this._key = "mask";
             this.type = PlunginDefine.MASK;
             this.limitNum = 1;
             this._rect = new Float32Array(4);

@@ -4,7 +4,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "vm";
+            this._key = "vm";
             this.limitNum = 1;
             this.type = PlunginDefine.VIEW_MATRIX;
         }

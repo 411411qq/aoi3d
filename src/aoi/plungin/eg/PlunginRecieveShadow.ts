@@ -3,7 +3,7 @@ module aoi {
         private reShadowVar:math.Vector3D;
         constructor() {
             super();
-            this.key = "r_s";
+            this._key = "r_s";
             this.type = PlunginDefine.RECIEVE_SHADOW;
             this.limitNum = 1;
             this.txtIndex = 0;

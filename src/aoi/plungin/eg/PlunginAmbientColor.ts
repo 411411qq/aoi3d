@@ -6,7 +6,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "ambient";
+            this._key = "ambient";
             this.limitNum = 1;
             this.type = PlunginDefine.AMBIENT_COLOR;
             this.ambientColor = new math.Vector3D();

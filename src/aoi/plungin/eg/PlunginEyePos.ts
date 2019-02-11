@@ -6,7 +6,7 @@ module aoi {
         constructor()
         {
             super();
-            this.key = "eye";
+            this._key = "eye";
             this.limitNum = 1;
             this.type = PlunginDefine.EYE_POS;
             this.txtIndex = 0;

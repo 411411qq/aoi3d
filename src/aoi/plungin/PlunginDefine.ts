@@ -10,6 +10,8 @@ module aoi {
         public static NEW_BLEND_14:number = 8;
         public static NEW_BLEND_15:number = 9;
 
+        public static REPLACE_TEXTURE_COLOR = 1;
+
         public static SIMPLE:number = 1;
         public static MUL_TEXUTRE:number = 2;
         public static GRAY:number = 3;
@@ -57,5 +59,7 @@ module aoi {
         public static DNOISE:number = 45;
         public static SEPIA:number = 46;
         public static ZOOM_BLUR:number = 47;
+        public static DEFAULT_COLOR:number = 48;
+        public static RONDOM_FUN:number = 49;
     }
 }

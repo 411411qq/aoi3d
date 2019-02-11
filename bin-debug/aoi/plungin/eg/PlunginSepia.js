@@ -13,7 +13,7 @@ var aoi;
         function PlunginSepia(amount) {
             if (amount === void 0) { amount = 0; }
             var _this = _super.call(this) || this;
-            _this.key = "sepia";
+            _this._key = "sepia";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SEPIA;
             _this._amount = 0;

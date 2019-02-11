@@ -3,7 +3,7 @@ module aoi {
     export class PlunginParticleRotOrMove extends PlunginVoBase {
         constructor() {
             super();
-            this.key = "p_morr";
+            this._key = "p_morr";
             this.limitNum = 1;
             this.type = PlunginDefine.P_MOVE_OR_ROT;
         }
