@@ -13,6 +13,9 @@ module aoi {
             urls.push("res/sky/frontcity.jpg");
             urls.push("res/sky/backcity.jpg");
             this.sky = new SkyBox(urls, 1500);
+            this.sky.scaleX = -1;
+            this.sky.scaleY = -1;
+            this.sky.scaleZ = -1;
             this.addChild(this.sky);
         }
         public initFromAsset(sa:SceneAsset)
@@ -33,6 +36,11 @@ module aoi {
                 o.setShowInCameraState(Define.CAM_NORMAL, true);
                 (o as Mesh).addPlugin(new aoi.PlunginSimple());
                 (o as Mesh).addPlugin(new aoi.PlunginKillAlpha(0,0.7));
+                let fog:aoi.PlunginFog = new aoi.PlunginFog();
+                fog.setFogColor(0,0,0);
+                fog.setFogData(20, 150);
+                (o as Mesh).addPlugin(fog);
+                (o as Mesh).setCullState(GlobelConst.gl.FRONT);
                 (o as Mesh).pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true, true);
             }
             o.name = list["name"];

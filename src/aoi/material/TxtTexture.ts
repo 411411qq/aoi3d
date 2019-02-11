@@ -66,6 +66,7 @@ module aoi {
                     }
                 }
                 gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textCanvas);
+                this.m_size.setTo(textCanvas.width, textCanvas.height);
             }
             return this.texture;
         }

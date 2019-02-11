@@ -27,5 +27,9 @@ module aoi {
         {
             return this.texture.getTextures(gl);
         }
+        public getSize():math.Vector2D
+        {
+            return this.texture.getSize();
+        }
     }
 }

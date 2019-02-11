@@ -15,6 +15,9 @@ module aoi {
           renderDepth:number;
           alpha:Number;
           hasAlpha:boolean;
+
+          getCullState(context:WebGLRenderingContext):number;
+          setCullState(val:number):void;
           getFinalMatrix():Matrix4;
      }
 }

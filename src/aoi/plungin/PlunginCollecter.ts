@@ -241,7 +241,14 @@ module aoi {
                 this.m_plunginList = this.plunginList.sort(this.onCompare);
                 let m_shaderKey:string = "";
                 for (i = 0; i < this.plunginList.length; i++) {
-                    m_shaderKey += "_" + this.plunginList[i].key;
+                    if(i == 0)
+                    {
+                        m_shaderKey += this.plunginList[i].type;
+                    }
+                    else
+                    {
+                        m_shaderKey += "" + this.plunginList[i].type;
+                    }
                 }
                 m_shaderKey += "_" + renderType;
                 this.m_keyCamDic[renderType] = m_shaderKey;
@@ -254,6 +261,7 @@ module aoi {
             for (i = 0; i < len; i++) {
                 pvo = this.plunginList[i];
                 pvo.active(gl, subGeo, target, camera, program, renderType);
+                pvo.endPlungin();
             }
         }
 

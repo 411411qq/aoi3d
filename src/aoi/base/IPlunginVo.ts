@@ -11,6 +11,7 @@ module aoi {
         getVertexCode(renderType:number):Array<OpenGlCodeVo>;
         getFragmentCode(renderType:number):Array<OpenGlCodeVo>;
         getAttArr():Array<any>;
+        endPlungin():void;
         getPrePlungin():Array<IPlunginVo>;
     }
 }

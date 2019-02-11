@@ -5,6 +5,7 @@ module aoi {
         public pColloct:PlunginCollecter;
         protected _vertexCode:Array<OpenGlCodeVo>;
         protected _fragmentCode:Array<OpenGlCodeVo>;
+        protected _lastFrame:number;
         public priority:number;
         public index:number;
         public type:number;
@@ -51,7 +52,10 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram,renderType:number):void {
 
         }
-
+        public endPlungin():void
+        {
+            this._lastFrame = GlobelConst.frameNum;
+        }
         public disactive(gl:WebGLRenderingContext, program:WebGLProgram):void {
 
         }

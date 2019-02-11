@@ -17,13 +17,13 @@ module aoi {
             arr.push(new aoi.PlunginWorldPos());
             return arr;
         }
-        private setFogColor(r:number, g:number, b:number):void
+        public setFogColor(r:number, g:number, b:number):void
         {
             this._color.r = r;
             this._color.g = g;
             this._color.b = b;
         }
-        private setFogData(near:number, far:number):void
+        public setFogData(near:number, far:number):void
         {
             this._data.x = near;
             this._data.y = far;
@@ -36,9 +36,12 @@ module aoi {
         }
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void 
         {
-            var eyePos:math.Vector3D = GlobelConst.view.camera.position;
-            gl.uniform4fv(program["u_fogColor"], this._color.elements);
-            gl.uniform4fv(program["u_fogData"], this._data.elements);
+            if(this._lastFrame != GlobelConst.frameNum)
+            {
+                var eyePos:math.Vector3D = GlobelConst.view.camera.position;
+                gl.uniform4fv(program["u_fogColor"], this._color.elements);
+                gl.uniform4fv(program["u_fogData"], this._data.elements);
+            }
         }
         public updateCode(renderType:number):void {
             this._fragmentCode.push(new OpenGlCodeVo(30002, this, this.genFramentCode1));

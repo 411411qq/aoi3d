@@ -53,5 +53,9 @@ module aoi {
         public static RIM_LIGHT:number = 41;
         public static HSV:number = 42;
         public static SKY_BOX:number = 43;
+        public static TEXTURE_SIZE:number = 44;
+        public static DNOISE:number = 45;
+        public static SEPIA:number = 46;
+        public static ZOOM_BLUR:number = 47;
     }
 }

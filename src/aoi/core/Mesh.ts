@@ -6,6 +6,7 @@ module aoi {
         private m_finalMatrix:Matrix4;
         private m_pluginCollector:PlunginCollecter;
         private m_animatorData:AnimatorPlayData;
+        private m_cullState:number = -1;
 
         constructor(geo:Geometry, mat:IMaterial, buildBound:boolean = true) {
             super(buildBound);
@@ -17,7 +18,18 @@ module aoi {
             this.m_animatorData = null;
             this.m_mouseEnable = false;
         }
-
+        public getCullState(context:WebGLRenderingContext):number
+        {
+            if(this.m_cullState != -1)
+            {
+                return this.m_cullState;
+            }
+            return context.BACK;
+        }
+        public setCullState(val:number):void
+        {
+            this.m_cullState = val;
+        }
         public get canCheckMesh():boolean
         {
             return false;

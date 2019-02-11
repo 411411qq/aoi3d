@@ -1,6 +1,8 @@
 module aoi {
     import EventBase = base.EventBase;
     export class AoiShader {
+        private static cullState:number = -1;
+
         private m_program:WebGLProgram;
         private m_vertexStr:string;
         private m_fragmentStr:string;
@@ -92,6 +94,7 @@ module aoi {
                         this.m_program[o.name] = gl.getUniformLocation(this.m_program, o.name);
                     }
                 }
+                console.log('Frame buffer object is incomplete: getProgram' + this.name);
             }
             return this.m_program;
         }
@@ -120,15 +123,17 @@ module aoi {
             }
             return program;
         }
-
         public render(gl:WebGLRenderingContext, target:IRenderable, camera:ICamera, renderType:number):void {
             var sub:ISubGeometry, i:number, subGeometries:Array<ISubGeometry> = target.geometry.subGeometries, len:number = target.geometry.numSubGeometry;
+            var cullState = target.getCullState(gl);
+            if(AoiShader.cullState != cullState)
+            {
+                gl.cullFace(cullState);
+                AoiShader.cullState = cullState;
+            }
             var program = this.getProgram(gl);
             for (i = 0; i < len; i++) {
                 gl.useProgram(program);
-                //gl.enable(gl.CULL_FACE);
-                //gl.cullFace(gl.BACK);
-                gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
                 sub = subGeometries[i];
                 var indexBuffer:WebGLBuffer = sub.getIndexBuffer(gl);
                 target.pluginCollector.activeSub(gl, sub, target, camera, program, renderType);

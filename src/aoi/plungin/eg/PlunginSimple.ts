@@ -70,9 +70,7 @@ module aoi {
         }
 
         private genFramentCode1():string {
-            var str:string = '#ifdef GL_ES\n' +
-                'precision mediump float;\n' +
-                '#endif\n';
+            var str:string = '#ifdef GL_ES\nprecision mediump float;\n#endif\n';
             return str;
         }
 

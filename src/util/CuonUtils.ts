@@ -37,6 +37,7 @@ module aoi
             var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
             if (!compiled) {
                 var error:string = gl.getShaderInfoLog(shader);
+                console.log("source:"+source);
                 console.log('Failed to compile shader: ' + error);
                 gl.deleteShader(shader);
                 return null;

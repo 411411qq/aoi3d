@@ -19,8 +19,11 @@ module aoi {
         }
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void 
         {
-            var eyePos:math.Vector3D = GlobelConst.view.camera.position;
-            gl.uniform4fv(program["u_eye"], eyePos.elements);
+            if(this._lastFrame != GlobelConst.frameNum)
+            {
+                var eyePos:math.Vector3D = GlobelConst.view.camera.position;
+                gl.uniform4fv(program["u_eye"], eyePos.elements);
+            }
         }
         public updateCode(renderType:number):void 
         {

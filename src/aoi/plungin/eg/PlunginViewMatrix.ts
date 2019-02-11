@@ -32,8 +32,11 @@ module aoi {
         }
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void
         {
-            var mm:math.Matrix4 = aoi.GlobelConst.view.camera.transform;
-            gl.uniformMatrix4fv(program["u_ViewMatrix"], false, mm.elements);
+            if(this._lastFrame != GlobelConst.frameNum)
+            {
+                var mm:math.Matrix4 = aoi.GlobelConst.view.camera.transform;
+                gl.uniformMatrix4fv(program["u_ViewMatrix"], false, mm.elements);
+            }
         }
         public getAttArr():Array<any> {
             var arr = [];

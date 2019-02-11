@@ -72,7 +72,7 @@ module aoi {
 
         public setup():void {
             this.gl = CuonUtils.getWebGLContext(this.canvas, {antialias:true});
-            this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            this.initGLState();
             this.m_mouseManager.init(this, this.m_mouseMeshCheck);
             this.m_mouseManager.enableMouseListeners();
             GlobelConst.gl = this.gl;
@@ -101,9 +101,9 @@ module aoi {
                     e=e || window.event;
                 
                     if(e.wheelDelta){//IE/Opera/Chrome
-                        console.log("wheelDelta:", e.wheelDelta);
+                        //console.log("wheelDelta:", e.wheelDelta);
                     }else if(e.detail){//Firefox
-                        console.log("detail:", e.detail);
+                        //console.log("detail:", e.detail);
                     }
                 }
                 /*注册事件*/
@@ -120,7 +120,12 @@ module aoi {
                 this.canvas.ontouchend = onClickCanvas;
             }
         }
-
+        private initGLState()
+        {
+            this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, 1);
+            this.gl.enable(this.gl.CULL_FACE);
+        }
         public resetSize(w:number, h:number):void {
             this.canvas.width = this.width = w * this.pixelRatio;
             this.canvas.height = this.height = h * this.pixelRatio;

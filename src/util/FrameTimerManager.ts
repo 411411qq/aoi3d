@@ -114,6 +114,7 @@ module base {
 
         public enterFrameHandler():void
         {
+            aoi.GlobelConst.frameNum ++;
             var tnow = Util.getTimer();
             aoi.GlobelConst.nowTime = tnow;
             var td_t = tnow - this.lastTime;
