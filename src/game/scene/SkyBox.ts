@@ -41,7 +41,6 @@ module aoi
                 this.geometry = new CubeGeometry(this.size,this.size,this.size);
                 this.material = new Material(this.cubeTexture);
                 this.addPlugin(new aoi.PlunginSkyBox());
-                this.addPlugin(new aoi.PlunginGray());
                 this.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
             }
         }

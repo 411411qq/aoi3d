@@ -9,6 +9,9 @@ module aoi {
         private _camera:ICamera;
         private _clearColor:math.Vector3D;
         private _type:number;
+
+        private _renderItems:Array<Object3DContainer>;
+
         constructor(type:number, w:number, h:number, cam:ICamera) 
         {
             GlobelConst.eventDispatcher.addEventListener(base.EventBase.CONTEXT_DISPOSE, this, this.onContextDispose);
@@ -17,6 +20,18 @@ module aoi {
             this._camera = cam;
             this._type = type;
             this._clearColor = new math.Vector3D(0.0,0.0,0.0,1.0);
+        }
+        public addRenderItem(item:Object3DContainer):void
+        {
+            if(this._renderItems == null)
+            {
+                this.initRenderList();
+            }
+            this._renderItems.push(item);
+        }
+        public initRenderList():void
+        {
+            this._renderItems = [];
         }
         public setClearColor(r:number, g:number, b:number, a:number):void
         {
@@ -118,8 +133,21 @@ module aoi {
             gl.clearColor(this._clearColor.x, this._clearColor.y, this._clearColor.z, this._clearColor.w);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-            let rList:RenderList = RenderCollecter.instance.getRenderList(renderType);
-            container.createRenderList(gl, this._camera, renderType, rList, true);
+            let rList:RenderList = null;
+            if(this._renderItems == null)
+            {
+                rList = RenderCollecter.instance.getRenderList(renderType);
+                container.createRenderList(gl, this._camera, renderType, rList, true);
+            }
+            else
+            {
+                rList = new RenderList();
+                let len = this._renderItems.length;
+                for(let i:number = 1; i < len; i++)
+                {
+                    this._renderItems[i].createRenderList(gl, this._camera, renderType, rList, true);
+                }
+            }
             rList.doRender(gl, this._camera, renderType);
 
             gl.bindFramebuffer(gl.FRAMEBUFFER, null);

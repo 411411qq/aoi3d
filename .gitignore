@@ -582,3 +582,9 @@ res/xingzou.md5mesh
 res/xingzou.mmv
 res/ybg.png
 *.map
+bin-debug/game/scene/SkyBox.js
+bin-debug/util/MD5.js
+bin-debug/game/scene/SkyBox.js
+bin-debug/game/scene/SkyBox.js.map
+bin-debug/game/scene/SkyBox.js
+bin-debug/game/scene/SkyBox.js.map

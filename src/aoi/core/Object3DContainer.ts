@@ -229,7 +229,6 @@ module aoi {
                 child.createRenderList(context, camera, renderType, renderList, checkInFrustum);
             }
         }
-
         public get scenePosition():Vector3D {
             if (this.m_scenePositionDirty) {
                 this.m_scenePosition = this.sceneTransform.position;

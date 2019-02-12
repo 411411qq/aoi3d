@@ -109,9 +109,9 @@ module editor
             this.preAssets.push({path:"res/noise_1.png", type:AssetDefine.ASSET_TEXTURE});
             this.preAssets.push({path:"res/noise_2.png", type:AssetDefine.ASSET_TEXTURE});
             this.preAssets.push({path:"res/area.png", type:AssetDefine.ASSET_TEXTURE});
-            this.preAssets.push({path:"res/julang.mmv", type:AssetDefine.ASSET_MD5MESH_BY});
-            this.preAssets.push({path:"res/julang.mav", type:AssetDefine.ASSET_MD5ANIM_BY});
-            this.preAssets.push({path:"res/scene/xinshoucun/xinshoucun.scene", type:AssetDefine.ASSET_SCENE});
+            //this.preAssets.push({path:"res/julang.mmv", type:AssetDefine.ASSET_MD5MESH_BY});
+            //this.preAssets.push({path:"res/julang.mav", type:AssetDefine.ASSET_MD5ANIM_BY});
+            //this.preAssets.push({path:"res/scene/xinshoucun/xinshoucun.scene", type:AssetDefine.ASSET_SCENE});
             //AssetManager.instance.fetch(UIDefine.DEFAULT, AssetDefine.ASSET_ALTAS, this, this.onObjLoaded);
             this.checkLoaded(null);
             
@@ -157,9 +157,20 @@ module editor
 
         private onPreLoaded():void
         {
-            var scene:aoi.SceneObj = new aoi.SceneObj();
-            scene.initFromAsset(this.loadedAssets[8] as aoi.SceneAsset);
-            this.scenceContainer.addChild(scene);
+            console.log(base.MD5.hex_md5("res/sky/rightcity.jpg_res/sky/leftcity.jpg"));
+            console.log(base.MD5.hex_md5("res/sky/rightcity.jpg_res/sky/leftcity.jpg"));
+            var urls:Array<string> = [];
+            urls.push("res/sky/rightcity.jpg");
+            urls.push("res/sky/leftcity.jpg");
+            urls.push("res/sky/botcity.jpg");
+            urls.push("res/sky/topcity.jpg");
+            urls.push("res/sky/frontcity.jpg");
+            urls.push("res/sky/backcity.jpg");
+            let sky = new aoi.SkyBox(urls, 1500);
+            sky.scaleX = -1;
+            sky.scaleY = -1;
+            sky.scaleZ = -1;
+            this.scenceContainer.addChild(sky);
         }
 
         private onLineBgLoaded(param:LoaderData):void

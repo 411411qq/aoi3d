@@ -4,19 +4,6 @@ module aoi {
         private sky:SkyBox;
         constructor() {
             super(false);
-
-            var urls:Array<string> = [];
-            urls.push("res/sky/rightcity.jpg");
-            urls.push("res/sky/leftcity.jpg");
-            urls.push("res/sky/botcity.jpg");
-            urls.push("res/sky/topcity.jpg");
-            urls.push("res/sky/frontcity.jpg");
-            urls.push("res/sky/backcity.jpg");
-            this.sky = new SkyBox(urls, 1500);
-            this.sky.scaleX = -1;
-            this.sky.scaleY = -1;
-            this.sky.scaleZ = -1;
-            this.addChild(this.sky);
         }
         public initFromAsset(sa:SceneAsset)
         {

@@ -38,7 +38,10 @@ module aoi {
                 s.checkDispose()
             });
         }
-
+        public fetchPluralAsset(paths:Array<string>, type:number, owner:Object, callback:Function = null, callbackParam:Object = null, priority:number = 10, lifeTime:number = 12000):void 
+        {
+            
+        }
         public fetch(path:string, type:number, owner:Object, callback:Function = null, callbackParam:Object = null, priority:number = 10, lifeTime:number = 12000):void {
             var loadData;
             if (this.hasAssets(path, type) == true)//检测资源是否在已经加载过
