@@ -21,13 +21,13 @@ module base {
             tick();
         }
 
-        public add(name:string, delay:number, repeat:number, callback:Function, hasParam:boolean = false, priority:number = 10):void
+        public add(name:string, delay:number, repeat:number, owner:any, callback:Function, hasParam:boolean = false, priority:number = 10):void
         {
-            var item = this.getFunctionSet(callback);
+            var item = this.getFunctionSet(owner, callback);
             if (item == null)
             {
                 item = ObjectPoolManager.instance.create(FrameTimeItem, null);
-                item.initObject(name, delay, repeat, callback, hasParam, priority);
+                item.initObject(name, delay, repeat, owner, callback, hasParam, priority);
                 this.newVec.push(item);
                 this.reOrder = true;
                 item.canDispose = false;
@@ -46,9 +46,9 @@ module base {
             }
         }
 
-        public hasFunction(callback:Function):boolean
+        public hasFunction(owner:any, callback:Function):boolean
         {
-            var index:number = this.getFunctionIndex(callback);
+            var index:number = this.getFunctionIndex(owner, callback);
             if (index == -1)
             {
                 return false;
@@ -61,7 +61,7 @@ module base {
             return true;
         }
 
-        public remove(callBack:Function):void
+        public remove(owner:any, callBack:Function):void
         {
             var i = 0, len = this.newVec.length;
             for (i = 0; i < this.newVec.length; i++)
@@ -72,7 +72,7 @@ module base {
                     return;
                 }
             }
-            var index = this.getFunctionIndex(callBack);
+            var index = this.getFunctionIndex(owner, callBack);
             if (index == -1)
             {
                 return;
@@ -81,9 +81,9 @@ module base {
             item.canDispose = true;
         }
 
-        public getFunctionSet(callback:Function):FrameTimeItem
+        public getFunctionSet(owner:any, callback:Function):FrameTimeItem
         {
-            var index = this.getFunctionIndex(callback);
+            var index = this.getFunctionIndex(owner, callback);
             if (index != -1)
             {
                 return this.itemVec[index];
@@ -99,12 +99,12 @@ module base {
             return null;
         }
 
-        public getFunctionIndex(callback:Function):number
+        public getFunctionIndex(owner:any, callback:Function):number
         {
             var len = this.itemVec.length, i;
             for (i = 0; i < len; i++)
             {
-                if (this.itemVec[i].callback == callback)
+                if (this.itemVec[i].callback == callback && this.itemVec[i].owner == owner)
                 {
                     return i;
                 }
@@ -179,6 +179,7 @@ module base {
     export class FrameTimeItem {
         public delay:number;
         public repeat:number;
+        public owner:any;
         public callback:Function;
         public hasParam:boolean;
         public lastTime:number;
@@ -197,9 +198,10 @@ module base {
             this.canDispose = false;
         }
 
-        public initObject(name:string, delay:number, repeat:number, callback:Function, hasParam:boolean = false, priority:number = 10):void {
+        public initObject(name:string, delay:number, repeat:number, owner:any, callback:Function, hasParam:boolean = false, priority:number = 10):void {
             this.delay = delay;
             this.repeat = repeat;
+            this.owner = owner;
             this.callback = callback;
             this.hasParam = hasParam;
             this.lastTime = Util.getTimer();
@@ -210,6 +212,7 @@ module base {
         public dispose():void {
             this.delay = 0;
             this.repeat = 0;
+            this.owner = null;
             this.callback = null;
             this.hasParam = false;
             this.lastTime = 0;
@@ -223,10 +226,10 @@ module base {
             if (td_t >= this.delay) {
                 this.lastTime = time;
                 if (this.hasParam) {
-                    this.callback(time, td_t);
+                    this.callback.call(this.owner, time, td_t);
                 }
                 else {
-                    this.callback();
+                    this.callback.call(this.owner);
                 }
                 return true;
             }

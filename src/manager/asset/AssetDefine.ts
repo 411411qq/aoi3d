@@ -15,5 +15,6 @@ module aoi
         static ASSET_BSP:number = 11;
         static ASSET_SCENE:number = 12;
         static ASSET_ALTAS:number = 13;
+        static ASSET_SKYBOX:number = 14;
     }
 }

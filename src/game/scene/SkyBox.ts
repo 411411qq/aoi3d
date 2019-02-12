@@ -12,37 +12,18 @@ module aoi
             this.urls = urls;
             this.reses = [];
             this.size = size;
-            this.loadImages();
+            PluralAssetManager.instance.fetch(this.urls, AssetDefine.ASSET_SKYBOX, this, this.onImageLoaded);
         }
-        private loadImages()
+
+        private onImageLoaded(key:string, obj:Object)
         {
-            var len:number = this.urls.length;
-            this.loadedNum = 0;
-            for(var i:number = 0;i<len; i++)
-            {
-                AssetManager.instance.fetch(this.urls[i], AssetDefine.ASSET_IMG, this, this.onImageLoaded, i);
-            }
-        }
-        private onImageLoaded(param:LoaderData, obj:Object)
-        {
-            var index:number = obj as number;
-            var res:ImageAsset = AssetManager.instance.gain(param.path, "SkyBox") as ImageAsset;
-            this.reses[index] = res;
-            this.loadedNum ++;
-            if(this.loadedNum == this.urls.length)
-            {
-                var imgs:Array<HTMLImageElement> = [];
-                for(var i:number = 0; i<this.urls.length; i++)
-                {
-                    imgs.push(this.reses[i].img);
-                }
-                this.cubeTexture = new CubeTexture(imgs);
-                this.setShowInCameraState(Define.CAM_NORMAL, true);
-                this.geometry = new CubeGeometry(this.size,this.size,this.size);
-                this.material = new Material(this.cubeTexture);
-                this.addPlugin(new aoi.PlunginSkyBox());
-                this.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
-            }
+            let tt:SkyBoxPluralAsset = PluralAssetManager.instance.gain(key, "SkyBox") as SkyBoxPluralAsset;
+            this.cubeTexture = tt.cubeTexture;
+            this.setShowInCameraState(Define.CAM_NORMAL, true);
+            this.geometry = new CubeGeometry(this.size,this.size,this.size);
+            this.material = new Material(this.cubeTexture);
+            this.addPlugin(new aoi.PlunginSkyBox());
+            this.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
         }
     }
 }

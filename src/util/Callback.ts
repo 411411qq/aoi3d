@@ -16,7 +16,7 @@ module base {
             this.func.call(this.owner, param, this.callbackParam);
         }
 
-        isSame(owner:Object, func:Function, callbackParam:Object):boolean 
+        isSame(owner:Object, func:Function):boolean 
         {
             if (this.owner == owner && this.func == func) 
             {

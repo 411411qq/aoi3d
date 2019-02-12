@@ -34,19 +34,13 @@ module aoi {
             }
             WorkerManager.instance.initWorker(WorkerDefine.ASSET_DECODE, "worker/AssetDecodeWorker.js");
 
-            base.FrameTimerManager.instance.add("assetCheck", 60, 0, function () {
-                s.checkDispose()
-            });
-        }
-        public fetchPluralAsset(paths:Array<string>, type:number, owner:Object, callback:Function = null, callbackParam:Object = null, priority:number = 10, lifeTime:number = 12000):void 
-        {
-            
+            base.FrameTimerManager.instance.add("assetCheck", 60, 0, this, this.checkDispose);
         }
         public fetch(path:string, type:number, owner:Object, callback:Function = null, callbackParam:Object = null, priority:number = 10, lifeTime:number = 12000):void {
             var loadData;
             if (this.hasAssets(path, type) == true)//检测资源是否在已经加载过
             {
-                var assets = this.gain(path, "TEMP_CHARGER");
+                var assets:AbstractAsset = this.gain(path, "TEMP_CHARGER");
                 if (assets.isReadyAsset() == true) {
                     if (callback != null) {
                         callback(assets.getLoaderData(), callbackParam);
@@ -55,7 +49,7 @@ module aoi {
                     return;
                 }
                 else {
-                    loadData = assets.loaderData;
+                    loadData = assets.getLoaderData();
                     if (callback != null)loadData.pushCallback(owner, callback, callbackParam);
                     this.returnAsset(assets, "TEMP_CHARGER");
                     return
@@ -86,11 +80,11 @@ module aoi {
             return a.priority - b.priority;
         }
 
-        public removeFetch(path:string, type:number, callback:Function):void {
+        public removeFetch(path:string, type:number, owner:any, callback:Function):void {
             var loadData;
             loadData = this.getLoaderData(path, type);
             if (loadData != null) {
-                if (callback != null)loadData.removeCallBack(callback);
+                if (owner != null && callback != null)loadData.removeCallBack(owner, callback);
                 if (loadData.hasCallBack() == false) {
                     if (this._assetWaitDic[type] != null) {
                         var arr = this._assetWaitDic[type];
@@ -224,7 +218,7 @@ module aoi {
             }
         }
 
-        public gain(path:string, changer:string) {
+        public gain(path:string, changer:string):AbstractAsset {
             var asset = this._asset_map[path];
             asset.getOut(changer);
             return asset;

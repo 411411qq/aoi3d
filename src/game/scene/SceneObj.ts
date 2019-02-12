@@ -63,7 +63,7 @@ module aoi {
         }
         private onImgLoaded(param:LoaderData)
         {
-            this._textureRes = AssetManager.instance.gain(param.path, "scene");
+            this._textureRes = AssetManager.instance.gain(param.path, "scene") as TextureAsset;
             this.material = new aoi.Material(this._textureRes.texture);
         }
         public dispose():void
@@ -73,7 +73,7 @@ module aoi {
                 AssetManager.instance.returnAsset(this._textureRes, "scene");
                 this._textureRes = null;
             }
-            AssetManager.instance.removeFetch(this._fullPath, AssetDefine.ASSET_TEXTURE, this.onImgLoaded);
+            AssetManager.instance.removeFetch(this._fullPath, AssetDefine.ASSET_TEXTURE, this, this.onImgLoaded);
             super.dispose();
         }
     }

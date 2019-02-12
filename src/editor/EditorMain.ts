@@ -95,7 +95,7 @@ module editor
             this._cameraController.lookAtObject = this.scenceContainer;
             this._cameraController.update();
             var s = this;
-            FrameTimerManager.instance.add("main", 16, 0, function onEnterFrame(){s.onEnterFrame();});
+            FrameTimerManager.instance.add("main", 16, 0, this, this.onEnterFrame);
             GlobelConst.view = this._view;
             GlobelConst.eventDispatcher.addEventListener(EventBase.MOUSE_ACT, this, this.onMouseAct);
             window.addEventListener('resize', function (evt) {
@@ -175,7 +175,7 @@ module editor
 
         private onLineBgLoaded(param:LoaderData):void
         {
-			var ass:TextureAsset = AssetManager.instance.gain(param.path, "main");
+			var ass:TextureAsset = AssetManager.instance.gain(param.path, "main") as TextureAsset;
             var geo:PlaneGeometry = new PlaneGeometry(1024,1024, Define.XZ);
             this.bgxy = new Mesh(geo, new aoi.Material(ass.texture));
             this.bgxy.addPlugin(new aoi.PlunginSimple());

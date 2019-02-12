@@ -1,5 +1,5 @@
 module aoi {
-    export class AssetBase extends base.EventDispatcher {
+    export class AssetBase extends ReferenceBase {
         public path:string;
         public type:number;
         private _priority:number;
@@ -30,7 +30,7 @@ module aoi {
         public pushCallback(owner:Object, callback:Function, callbackParam:Object) :void {
             var isIn:boolean = false, i:number = 0, len:number = this.callbacks.length;
             for (i = 0; i < len; i++) {
-                if (this.callbacks[i].isSame(owner, callback, callbackParam) == true) {
+                if (this.callbacks[i].isSame(owner, callback) == true) {
                     isIn = true;
                     break;
                 }
@@ -41,7 +41,7 @@ module aoi {
         public removeCallBack(owner:Object, callback:Function, callbackParam:Object):void {
             var i:number = 0, len:number = this.callbacks.length;
             for (i = 0; i < len; i++) {
-                if (this.callbacks[i].isSame(owner, callback, callbackParam) == true) {
+                if (this.callbacks[i].isSame(owner, callback) == true) {
                     this.callbacks.splice(i, 1);
                     return;
                 }

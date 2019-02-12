@@ -42,7 +42,7 @@ module aoi {
         }
 
         private onImgLoaded(param:LoaderData):void {
-            this.tmAss = AssetManager.instance.gain(param.path, "AltasAsset");
+            this.tmAss = AssetManager.instance.gain(param.path, "AltasAsset") as TextureAsset;
             this._altas.material = new Material(this.tmAss.texture);
             this.dispatchEvent(new base.EventBase(base.EventBase.COMPLETE));
         }
