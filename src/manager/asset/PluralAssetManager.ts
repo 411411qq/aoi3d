@@ -45,6 +45,10 @@ module aoi {
         public removeFetch(paths:Array<string>, owner:Object, callback:Function = null):void
         {
             let key:string = PluralAsset.genKey(paths);
+            this.removeFetchByKey(key, owner, callback);
+        }
+        public removeFetchByKey(key:string, owner:Object, callback:Function = null):void
+        {
             let item:PluralAsset = this.getLoadingAsset(key);
             if(item != null)
             {
@@ -70,6 +74,9 @@ module aoi {
         public gain(key:string, charge:string):PluralAsset
         {
             return this._asset_map[key];
+        }
+        public returnAsset(data:PluralAsset, charger:string):void{
+            data.returnTo(charger);
         }
         public checkDispose()
         {

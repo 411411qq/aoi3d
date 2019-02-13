@@ -157,8 +157,6 @@ module editor
 
         private onPreLoaded():void
         {
-            console.log(base.MD5.hex_md5("res/sky/rightcity.jpg_res/sky/leftcity.jpg"));
-            console.log(base.MD5.hex_md5("res/sky/rightcity.jpg_res/sky/leftcity.jpg"));
             var urls:Array<string> = [];
             urls.push("res/sky/rightcity.jpg");
             urls.push("res/sky/leftcity.jpg");
