@@ -43,7 +43,7 @@ module aoi {
                 gl.uniform4fv(program["u_fogData"], this._data.elements);
             }
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(30002, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(81000, this, this.genFramentCode2));
         }

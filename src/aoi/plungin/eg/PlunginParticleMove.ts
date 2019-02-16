@@ -13,7 +13,7 @@ module aoi {
             arr.push(new aoi.PlunginParticleRotOrMove());
             return arr;
         }
-        public updateCode(renderType:number) {
+        public updateCode() {
             this._vertexCode.push(new OpenGlCodeVo(35000, this, this.genVertexCode1));
         }
         

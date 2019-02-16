@@ -28,7 +28,7 @@ module aoi {
                 fog.setFogData(20, 150);
                 (o as Mesh).addPlugin(fog);
                 (o as Mesh).setCullState(GlobelConst.gl.FRONT);
-                (o as Mesh).pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true, true);
+                (o as Mesh).getPluginCollector(Define.CAM_NORMAL).setParamMode(PlunginDefine.NORMAL, true, true, true);
             }
             o.name = list["name"];
             o.x = list["px"];

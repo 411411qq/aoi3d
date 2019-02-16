@@ -11,7 +11,7 @@ module aoi {
             this.limitNum = 1;
             this._rect = new Float32Array(4);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(2, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(80000, this, this.genVertexCode2));
             this._fragmentCode.push(new OpenGlCodeVo(30001, this, this.genFramentCode1));

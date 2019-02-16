@@ -86,13 +86,15 @@ module aoi {
                 return a.renderDepth - b.renderDepth;
             }
         }
-        private getOneQuadBatch():QuadBatch {
+        private getOneQuadBatch(renderType:number = 1):QuadBatch 
+        {
             if (this.quadBatch.length > 0) {
                 return this.quadBatch.shift();
             }
             var q:QuadBatch = new QuadBatch();
             q.addPlugin(new PlunginSimple());
-            q.pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true);
+            let nor:PlunginCollecter = q.getPluginCollector(renderType) as PlunginCollecter;
+            nor.setParamMode(PlunginDefine.NORMAL, true, true);
             return q;
         }
         public addRender(target:any, cam:ICamera, checkInFrustum:boolean):void

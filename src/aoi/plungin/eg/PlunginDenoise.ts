@@ -29,7 +29,7 @@ module aoi
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             gl.uniform2f(program["u_dnoiseData"], this._strength, this._exponent);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(51, this, this.genFramentCode1));
         	this._fragmentCode.push(new OpenGlCodeVo(70000, this, this.genFramentCode2));
         }

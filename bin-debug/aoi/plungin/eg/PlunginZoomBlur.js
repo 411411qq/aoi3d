@@ -44,7 +44,7 @@ var aoi;
         PlunginZoomBlur.prototype.active = function (gl, subGeo, target, camera, program, renderType) {
             gl.uniform3fv(program["u_zoomData"], this._zoomData);
         };
-        PlunginZoomBlur.prototype.updateCode = function (renderType) {
+        PlunginZoomBlur.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(50, this, this.genFramentCode1));
             this._fragmentCode.push(new aoi.OpenGlCodeVo(70000, this, this.genFramentCode2));
         };

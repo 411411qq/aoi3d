@@ -30,7 +30,7 @@ module aoi {
             return arr;
         }
 
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(100, this, this.genVertexCode0));
             this._vertexCode.push(new OpenGlCodeVo(25000, this, this.genVertexCode1));
         }

@@ -178,7 +178,7 @@ module editor
             this.bgxy = new Mesh(geo, new aoi.Material(ass.texture));
             this.bgxy.addPlugin(new aoi.PlunginSimple());
             this.bgxy.addPlugin(new PlunginKillAlpha(0, 0.1));
-            this.bgxy.pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true, false);
+            this.bgxy.getPluginCollector(Define.CAM_NORMAL).setParamMode(PlunginDefine.NORMAL, true, true, false);
             this.scenceContainer.addChild(this.bgxy);
         }
         private onMeshClick(event):void

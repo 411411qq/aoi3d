@@ -73,11 +73,12 @@ module aoi
             this.text.text = this._str;
             this.addChild(this.text);
 
+            let collect:PlunginCollecter = this.text.getPluginCollector(Define.CAM_2D);
             var pmm:PlunginModelMatrix = new PlunginModelMatrix();
-            this.text.pluginCollector.addPlugin(pmm);
+            collect.addPlugin(pmm);
             var pm:PlunginMask = new PlunginMask();
             pm.setRect(0,-this._height,this._width - 10,this._height, this.text);
-            this.text.pluginCollector.addPlugin(pm);
+            collect.addPlugin(pm);
         }
         protected onMouseDown(event:EventBase)
         {

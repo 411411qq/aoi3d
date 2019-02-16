@@ -27,7 +27,7 @@ var aoi;
         PlunginSepia.prototype.active = function (gl, subGeo, target, camera, program, renderType) {
             gl.uniform1f(program["u_sepiaamount"], this._amount);
         };
-        PlunginSepia.prototype.updateCode = function (renderType) {
+        PlunginSepia.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(50, this, this.genFramentCode1));
             this._fragmentCode.push(new aoi.OpenGlCodeVo(75003, this, this.genFramentCode2));
         };

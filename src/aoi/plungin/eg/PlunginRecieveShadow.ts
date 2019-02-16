@@ -27,7 +27,7 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void 
         {
             let fbo:FrameBufferObject = FrameBufferManager.instance.getFrameBufferObject(Define.FBO_SHADOW);
-            if(fbo != null && renderType == Define.CAM_NORMAL)
+            if(fbo != null)
             {
                 gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
                 gl.bindTexture(gl.TEXTURE_2D, fbo.texture);
@@ -52,17 +52,14 @@ module aoi {
                 gl.uniform4fv(program["u_reShadowVar"], this.reShadowVar.elements);
             }
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
-            if(renderType != Define.CAM_SHADOW)
-            {
-                this._vertexCode.push(new OpenGlCodeVo(100, this, this.genVertexCode1));
-                this._vertexCode.push(new OpenGlCodeVo(50100, this, this.genVertexCode2));
+            this._vertexCode.push(new OpenGlCodeVo(100, this, this.genVertexCode1));
+            this._vertexCode.push(new OpenGlCodeVo(50100, this, this.genVertexCode2));
 
-                this._fragmentCode.push(new OpenGlCodeVo(100, this, this.genFramentCode1));
-                this._fragmentCode.push(new OpenGlCodeVo(30100, this, this.genFramentCode2));
-                this._fragmentCode.push(new OpenGlCodeVo(88000, this, this.genFramentCode3));
-            }
+            this._fragmentCode.push(new OpenGlCodeVo(100, this, this.genFramentCode1));
+            this._fragmentCode.push(new OpenGlCodeVo(30100, this, this.genFramentCode2));
+            this._fragmentCode.push(new OpenGlCodeVo(88000, this, this.genFramentCode3));
         }
         private genVertexCode1():string
         {

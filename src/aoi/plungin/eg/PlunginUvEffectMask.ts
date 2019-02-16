@@ -29,7 +29,7 @@ module aoi {
             arr.push({type: 2, name: "u_UvMaskUv"});
             return arr;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(30100, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(70450, this, this.genFramentCode2));
         }

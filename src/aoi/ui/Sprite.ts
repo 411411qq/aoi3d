@@ -27,8 +27,9 @@ module aoi
             this._rect.y = - height;
             this.width = width;
             this.height = height;
-            this.pluginCollector.addPlugin(new PlunginSimple())
-            this.pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true);
+            let collect:PlunginCollecter = this.getPluginCollector(Define.CAM_2D);
+            collect.addPlugin(new PlunginSimple())
+            collect.setParamMode(PlunginDefine.NORMAL, true, true);
             this.setShowInCameraState(Define.CAM_2D, true);
         }
         public get rect():Rectangle
@@ -124,9 +125,10 @@ module aoi
                 this._ad = this._altas.getAltasData(this._altasName);
                 if(this._ad != null)
                 {
+                    let collect:PlunginCollecter = this.getPluginCollector(Define.CAM_2D);
                     var  puv:PlunginUvOffset = new PlunginUvOffset();
                     puv.setData(this._ad.uvOffsetX, this._ad.uvOffsetY, this._ad.uvScaleX, this._ad.uvScaleY);
-                    this.pluginCollector.addPlugin(puv);
+                    collect.addPlugin(puv);
                 }
             }
         }
@@ -229,8 +231,9 @@ module aoi
             this._rect = new Rectangle(0,0,width,height);
             this.width = width;
             this.height = height;
-            this.pluginCollector.addPlugin(new PlunginSimple())
-            this.pluginCollector.setParamMode(PlunginDefine.NORMAL, true, true);
+            let collect:PlunginCollecter = this.getPluginCollector(Define.CAM_2D);
+            collect.addPlugin(new PlunginSimple())
+            collect.setParamMode(PlunginDefine.NORMAL, true, true);
             this.setShowInCameraState(Define.CAM_2D, true);
         }
         public get rect():Rectangle

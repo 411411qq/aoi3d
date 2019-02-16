@@ -31,7 +31,7 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             gl.uniform2fv(program["u_uvData"], this._uvData);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(0, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(60000, this, this.genVertexCode2));
         }

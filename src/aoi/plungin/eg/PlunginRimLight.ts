@@ -35,7 +35,7 @@ module aoi {
             arr.push({type: 2, name: "u_RimColor"});
             return arr;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(3, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(70002, this, this.genVertexCode2));
 

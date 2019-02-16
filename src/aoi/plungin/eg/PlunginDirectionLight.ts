@@ -19,7 +19,7 @@ module aoi {
         {
             this.dirLight = val;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._vertexCode.push(new OpenGlCodeVo(200, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(75300, this, this.genVertexCode2));

@@ -16,18 +16,19 @@ module aoi {
             GlobelConst.eventDispatcher.addEventListener(EventBase.CONTEXT_DISPOSE, this, this.onContxtDispose)
         }
 
-        public getShader(plunginCollocter:PlunginCollecter, renderType:number):AoiShader {
-            var str = plunginCollocter.getShaderKey(renderType);
+        public getShader(plunginCollocter:PlunginCollecter):AoiShader 
+        {
+            var str = plunginCollocter.getShaderKey();
             if (this.shaderCache[str] == null) {
-                var shader = this.createShader(plunginCollocter, renderType);
+                var shader = this.createShader(plunginCollocter);
                 this.shaderCache[str] = shader;
             }
             return this.shaderCache[str];
         }
 
-        private createShader(plunginCollocter:PlunginCollecter, renderType:number):AoiShader {
-            var shader:AoiShader = new AoiShader(plunginCollocter.getShaderKey(renderType));
-            shader.generateCode(plunginCollocter, renderType);
+        private createShader(plunginCollocter:PlunginCollecter):AoiShader {
+            var shader:AoiShader = new AoiShader(plunginCollocter.getShaderKey());
+            shader.generateCode(plunginCollocter);
             return shader;
         }
 

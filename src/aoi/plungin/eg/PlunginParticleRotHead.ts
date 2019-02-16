@@ -26,7 +26,7 @@ module aoi {
             //tempM.identity();
             gl.uniformMatrix4fv(program["u_rotHead"], false, tempM.elements);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(102, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(200, this, this.genVertexCode2));
             this._vertexCode.push(new OpenGlCodeVo(23000, this, this.genVertexCode3));

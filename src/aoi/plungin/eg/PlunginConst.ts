@@ -22,7 +22,7 @@ module aoi {
             this.constData.x = (GlobelConst.nowTime - this.startTime) * 0.001;
             gl.uniform4fv(program["u_const"], this.constData.elements);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(100, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(70400, this, this.genVertexCode2));
 

@@ -45,7 +45,7 @@ module aoi {
             this.txtIndex = this.pColloct.getTextureObj();
             this._txtIndex2 = this.pColloct.getTextureObj();
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._fragmentCode.push(new OpenGlCodeVo(10000, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(50100, this, this.genFramentCode2));

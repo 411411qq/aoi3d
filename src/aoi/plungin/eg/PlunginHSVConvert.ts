@@ -16,7 +16,7 @@ module aoi {
         	this._datas[1] = saturation;
             this._datas[2] = bright;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(102, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(103, this, this.genFramentCode2));
             this._fragmentCode.push(new OpenGlCodeVo(104, this, this.genFramentCode3));

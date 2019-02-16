@@ -8,7 +8,7 @@ module aoi {
             this.limitNum = 1;
         }
 
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(80000, this, this.genFramentCode));
         }
         

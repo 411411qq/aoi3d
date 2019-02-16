@@ -8,7 +8,7 @@ module aoi {
             this.type = PlunginDefine.MODEL_INVERSEMATRIX;
             this.limitNum = 1;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(1, this, this.genVertexCode));
         }
         private genVertexCode():string {

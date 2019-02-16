@@ -20,13 +20,24 @@ var aoi;
             return _this;
         }
         SkyBox.prototype.onImageLoaded = function (key, obj) {
-            var tt = aoi.PluralAssetManager.instance.gain(key, "SkyBox");
-            this.cubeTexture = tt.cubeTexture;
+            this.skyRes = aoi.PluralAssetManager.instance.gain(key, "SkyBox");
+            this.cubeTexture = this.skyRes.cubeTexture;
             this.setShowInCameraState(aoi.Define.CAM_NORMAL, true);
             this.geometry = new aoi.CubeGeometry(this.size, this.size, this.size);
             this.material = new aoi.Material(this.cubeTexture);
             this.addPlugin(new aoi.PlunginSkyBox());
-            this.pluginCollector.setParamMode(aoi.PlunginDefine.NORMAL, false, true, true);
+            this.getPluginCollector(aoi.Define.CAM_NORMAL).setParamMode(aoi.PlunginDefine.NORMAL, false, true, true);
+        };
+        SkyBox.prototype.dispose = function () {
+            _super.prototype.dispose.call(this);
+            if (this.urls != null) {
+                aoi.PluralAssetManager.instance.removeFetch(this.urls, this, this.onImageLoaded);
+                this.urls = null;
+            }
+            if (this.skyRes != null) {
+                aoi.PluralAssetManager.instance.returnAsset(this.skyRes, "SkyBox");
+                this.skyRes = null;
+            }
         };
         return SkyBox;
     }(aoi.Mesh));

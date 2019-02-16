@@ -34,7 +34,7 @@ var aoi;
         PlunginDenoise.prototype.active = function (gl, subGeo, target, camera, program, renderType) {
             gl.uniform2f(program["u_dnoiseData"], this._strength, this._exponent);
         };
-        PlunginDenoise.prototype.updateCode = function (renderType) {
+        PlunginDenoise.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(51, this, this.genFramentCode1));
             this._fragmentCode.push(new aoi.OpenGlCodeVo(70000, this, this.genFramentCode2));
         };

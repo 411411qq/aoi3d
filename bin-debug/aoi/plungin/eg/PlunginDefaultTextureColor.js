@@ -18,7 +18,7 @@ var aoi;
             _this._replaceType = aoi.PlunginDefine.REPLACE_TEXTURE_COLOR;
             return _this;
         }
-        PlunginDefaultTextureColor.prototype.updateCode = function (renderType) {
+        PlunginDefaultTextureColor.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(70000, this, this.genFramentCode4));
         };
         PlunginDefaultTextureColor.prototype.genFramentCode4 = function () {

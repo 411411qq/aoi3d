@@ -7,7 +7,7 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.P_ROT_FUN;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(101, this, this.genVertexCode1));
         }
         private genVertexCode1() {

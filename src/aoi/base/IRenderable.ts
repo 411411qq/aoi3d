@@ -3,7 +3,7 @@ module aoi {
      export interface IRenderable extends IBoundsOwner {
           addPlugin(vo:IPlunginVo):void;
           removePlugin(type:number):void;
-          pluginCollector:PlunginCollecter;
+          getPluginCollector(renderType:number):PlunginCollecter;
 
           material:IMaterial;
           geometry:Geometry;

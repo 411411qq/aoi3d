@@ -52,7 +52,7 @@ module aoi {
             arr.push({type: 2, name: "u_UvStrongData"});
             return arr;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(30100, this, this.genFramentCode2));
             if(this._faceNor == 1)
             {

@@ -26,7 +26,7 @@ module aoi
             this.geometry = new CubeGeometry(this.size,this.size,this.size);
             this.material = new Material(this.cubeTexture);
             this.addPlugin(new aoi.PlunginSkyBox());
-            this.pluginCollector.setParamMode(PlunginDefine.NORMAL, false, true, true);
+            this.getPluginCollector(Define.CAM_NORMAL).setParamMode(PlunginDefine.NORMAL, false, true, true);
         }
         public dispose():void
         {

@@ -20,8 +20,8 @@ module aoi
             this.material = null;
             this._geo.reset();
             this._first = null;
-            this.pluginCollector.removePlugin(PlunginDefine.MASK);
-            this.pluginCollector.removePlugin(PlunginDefine.MODEL_MATRIX);
+            this.getPluginCollector(Define.CAM_2D).removePlugin(PlunginDefine.MASK);
+            this.getPluginCollector(Define.CAM_2D).removePlugin(PlunginDefine.MODEL_MATRIX);
         }
         public buildGeo():void
         {
@@ -32,25 +32,27 @@ module aoi
             this._geo.addMesh(mesh);
             if(this._first == null)
             {
+                let collect:PlunginCollecter = mesh.getPluginCollector(renderType);
                 this._first = mesh;
-                this._key = mesh.pluginCollector.getShaderKey(renderType);
+                this._key = collect.getShaderKey();
                 this._mName = mesh.material;
-                if(mesh.pluginCollector.hasPlugin(PlunginDefine.MASK))
+                if(collect.hasPlugin(PlunginDefine.MASK))
                 {
-                    this._maskPlungin = (mesh.pluginCollector.getPlugin(PlunginDefine.MASK) as PlunginMask).clone();
+                    this._maskPlungin = (collect.getPlugin(PlunginDefine.MASK) as PlunginMask).clone();
                     var pmm:PlunginModelMatrix = new PlunginModelMatrix();
-                    this.pluginCollector.addPlugin(this._maskPlungin);
+                    collect.addPlugin(this._maskPlungin);
                 }
             }
         }
         public isSame(mesh:IBase2D, renderType:number):boolean
         {
-            if(this._key == mesh.pluginCollector.getShaderKey(renderType)
+            let collect:PlunginCollecter = mesh.getPluginCollector(renderType);
+            if(this._key == collect.getShaderKey()
             && this._mName == mesh.material)
             {
-                if(mesh.pluginCollector.hasPlugin(PlunginDefine.MASK))
+                if(collect.hasPlugin(PlunginDefine.MASK))
                 {
-                    var p:PlunginMask = (mesh.pluginCollector.getPlugin(PlunginDefine.MASK) as PlunginMask);
+                    var p:PlunginMask = (collect.getPlugin(PlunginDefine.MASK) as PlunginMask);
                     if(this._maskPlungin.isSame(p))
                     {
                         return true;

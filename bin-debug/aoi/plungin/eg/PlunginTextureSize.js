@@ -32,7 +32,7 @@ var aoi;
             this._size[1] = vec.y;
             gl.uniform2fv(program["u_textureSize"], this._size);
         };
-        PlunginTextureSize.prototype.updateCode = function (renderType) {
+        PlunginTextureSize.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(51, this, this.genFramentCode1));
         };
         PlunginTextureSize.prototype.genFramentCode1 = function () {

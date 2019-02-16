@@ -15,7 +15,7 @@ module aoi {
             arr.push(new aoi.PlunginModelMatrix());
             return arr;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._vertexCode.push(new OpenGlCodeVo(201, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(49301, this, this.genVertexCode2));

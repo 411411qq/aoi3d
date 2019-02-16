@@ -13,6 +13,14 @@ module aoi {
         public static REPLACE_TEXTURE_COLOR = 1;
 
         public static SIMPLE:number = 1;
+        public static SIMPLE_SHADOW:number = 50;
+        public static SIMPLE_PERTURBATION:number = 51;
+        public static SKELETEN:number = 52;
+        public static SKELETEN_SHADOW:number = 53;
+        public static SKELETEN_PERTURBATION:number = 54;
+        public static PARTICLE:number = 55;
+        public static PARTICLE_SHADOW:number = 56;
+        public static PARTICLE_PERTURBATION:number = 57;
         public static MUL_TEXUTRE:number = 2;
         public static GRAY:number = 3;
         public static P_MOVE:number = 4;
@@ -48,7 +56,7 @@ module aoi {
         public static P_MOVE_OR_ROT:number = 34;
         public static P_MOVIECLICP:number = 35;
         public static RECIEVE_SHADOW:number = 36;
-        public static PERTURBATION:number = 37;
+        public static PERTURBATION:number = 37;//扰动
         public static FOG:number = 38;
         public static P_GLOBAL:number = 39;
         public static GAUSS_BLUR:number = 40;

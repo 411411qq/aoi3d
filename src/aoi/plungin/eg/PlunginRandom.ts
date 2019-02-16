@@ -9,7 +9,7 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.RONDOM_FUN;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(101, this, this.genFramentCode1));
         }
         private genFramentCode1() {

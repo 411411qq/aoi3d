@@ -30,7 +30,7 @@ module aoi {
             arr.push({type: 2, name: "u_normal_uv"});
             return arr;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(30100, this, this.genFramentCode2));
             this._fragmentCode.push(new OpenGlCodeVo(70200, this, this.genFramentCode4));
         }

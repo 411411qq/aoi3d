@@ -33,11 +33,11 @@ module aoi {
         {
             return pName + this.index;
         }
-        private _updateCode(renderType:number):void {
+        private _updateCode():void {
             //if (this._vertexCode == null || this._fragmentCode == null) {
                 this._vertexCode = [];
                 this._fragmentCode = [];
-                this.updateCode(renderType);
+                this.updateCode();
             //}
         }
         public getReplaceType():number
@@ -48,17 +48,17 @@ module aoi {
         {
             return this._replaceWeight;
         }
-        protected updateCode(renderType:number):void {
+        protected updateCode():void {
 
         }
 
-        public getVertexCode(renderType:number):Array<OpenGlCodeVo> {
-            this._updateCode(renderType);
+        public getVertexCode():Array<OpenGlCodeVo> {
+            this._updateCode();
             return this._vertexCode;
         }
 
-        public getFragmentCode(renderType:number):Array<OpenGlCodeVo> {
-            this._updateCode(renderType);
+        public getFragmentCode():Array<OpenGlCodeVo> {
+            this._updateCode();
             return this._fragmentCode;
         }
 

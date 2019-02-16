@@ -48,7 +48,7 @@ module aoi {
 
             gl.uniform4fv(program["u_Water"], this.data.elements);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(10000, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(50100, this, this.genFramentCode2));
         }

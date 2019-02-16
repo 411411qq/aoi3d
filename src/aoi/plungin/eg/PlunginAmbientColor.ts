@@ -25,7 +25,7 @@ module aoi {
             arr.push({type: 2, name: "u_ambientColor"});
             return arr;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._fragmentCode.push(new OpenGlCodeVo(30003, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(85200, this, this.genFramentCode2));

@@ -33,6 +33,10 @@ module aoi {
         {
             this._renderItems = [];
         }
+        public drowTo(geo:Geometry):void
+        {
+            
+        }
         public setClearColor(r:number, g:number, b:number, a:number):void
         {
             this._clearColor.x = r;

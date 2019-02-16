@@ -8,7 +8,7 @@ module aoi {
             this.type = PlunginDefine.SKY_BOX;
             this.txtIndex = 0;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._vertexCode.push(new OpenGlCodeVo(0, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(30000, this, this.genVertexCode2));

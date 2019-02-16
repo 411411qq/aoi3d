@@ -8,7 +8,7 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.C_UV;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(101, this, this.genVertexCode1));
             this._fragmentCode.push(new OpenGlCodeVo(101, this, this.genFramentCode1));
         }

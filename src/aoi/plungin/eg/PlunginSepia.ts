@@ -18,7 +18,7 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             gl.uniform1f(program["u_sepiaamount"], this._amount);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
         	this._fragmentCode.push(new OpenGlCodeVo(50, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(75003, this, this.genFramentCode2));
         }

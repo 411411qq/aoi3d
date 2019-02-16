@@ -16,7 +16,7 @@ module aoi {
             this.m_data.z = totalFrames;
             this.m_data.w = interval;
         }
-        public updateCode(renderType:number) {
+        public updateCode() {
             this._vertexCode.push(new OpenGlCodeVo(35000, this, this.genVertexCode1));
         }
         public getAttArr():Array<any> {

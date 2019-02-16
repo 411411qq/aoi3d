@@ -19,7 +19,7 @@ var aoi;
             _this.txtIndex = 0;
             return _this;
         }
-        PlunginSkyBox.prototype.updateCode = function (renderType) {
+        PlunginSkyBox.prototype.updateCode = function () {
             this._vertexCode.push(new aoi.OpenGlCodeVo(0, this, this.genVertexCode1));
             this._vertexCode.push(new aoi.OpenGlCodeVo(30000, this, this.genVertexCode2));
             this._vertexCode.push(new aoi.OpenGlCodeVo(50000, this, this.genVertexCode3));

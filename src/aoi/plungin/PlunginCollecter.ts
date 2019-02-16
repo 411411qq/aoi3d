@@ -12,10 +12,11 @@ module aoi {
         private m_blendSource:number;
         private m_blendDestination:number;
         private m_plunginNameDirty:boolean;
-        private m_keyCamDic:Object;
+        
         private m_textureIndex:number;
         /** shader字典 */
-        private m_shaderDic:Object;
+        private m_shader:AoiShader;
+        private m_keyName:string;
 
         constructor() {
             this.m_mode = PlunginDefine.NORMAL;
@@ -28,8 +29,7 @@ module aoi {
             this.m_blendDirty = true;
             this.m_plunginList = [];
             this.m_plunginNameDirty = true;
-            this.m_keyCamDic = {};
-            this.m_shaderDic = {};
+            this.m_keyName = null;
             this.m_textureIndex = 0;
             this.m_dic = {};
         }
@@ -208,6 +208,7 @@ module aoi {
                     len --;
                 }
             }
+            this.invalidCollect();
             this.m_dic[type] = 0;
         }
         public hasPlugin(type:number):boolean
@@ -239,20 +240,21 @@ module aoi {
         }
 
         public invalidCollect():void {
-            this.m_keyCamDic = {};
+            this.m_keyName = null;
+            this.m_shader = null;
             this.m_plunginNameDirty = true;
         }
 
-        public getShader(renderType:number):AoiShader {
-            if (this.m_keyCamDic[renderType] == null || this.m_shaderDic[renderType] == null) {
+        public getShader():AoiShader {
+            if (this.m_shader == null) {
                 this.buildTextureIndex();
-                this.m_shaderDic[renderType] = ShaderManager.instance.getShader(this, renderType);
+                this.m_shader = ShaderManager.instance.getShader(this);
             }
-            return this.m_shaderDic[renderType];
+            return this.m_shader;
         }
 
-        public getShaderKey(renderType:number):string {
-            if (this.m_plunginNameDirty || this.m_keyCamDic[renderType] == null) 
+        public getShaderKey():string {
+            if (this.m_plunginNameDirty || this.m_keyName == null) 
             {
                 var i = 0;
                 this.m_plunginNameDirty = false;
@@ -268,10 +270,9 @@ module aoi {
                         m_shaderKey += "" + this.plunginList[i].key;
                     }
                 }
-                m_shaderKey += "_" + renderType;
-                this.m_keyCamDic[renderType] = m_shaderKey;
+                this.m_keyName = m_shaderKey;
             }
-            return this.m_keyCamDic[renderType];
+            return this.m_keyName;
         }
 
         public activeSub(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {

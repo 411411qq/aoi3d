@@ -22,7 +22,7 @@ module aoi {
             this._size[1] = vec.y;
             gl.uniform2fv(program["u_textureSize"], this._size);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
         	this._fragmentCode.push(new OpenGlCodeVo(51, this, this.genFramentCode1));
         }
         private genFramentCode1():string

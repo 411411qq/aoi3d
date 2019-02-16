@@ -17,7 +17,7 @@ var aoi;
             _this.type = aoi.PlunginDefine.RONDOM_FUN;
             return _this;
         }
-        PlunginRandom.prototype.updateCode = function (renderType) {
+        PlunginRandom.prototype.updateCode = function () {
             this._fragmentCode.push(new aoi.OpenGlCodeVo(101, this, this.genFramentCode1));
         };
         PlunginRandom.prototype.genFramentCode1 = function () {

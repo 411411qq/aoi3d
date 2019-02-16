@@ -47,14 +47,14 @@ module aoi {
             return a.priority > b.priority ? 1 : -1;
         }
 
-        public generateCode(pCollector:PlunginCollecter, renderType:number):void {
+        public generateCode(pCollector:PlunginCollecter):void {
             var plunginList:Array<IPlunginVo> = pCollector.plunginList;
             var agalVertexVoList:Array<OpenGlCodeVo> = [], agalFragmentVoList:Array<OpenGlCodeVo> = [], len:number = plunginList.length;
             var i = 0, o, vc, fc;
             pCollector.buildTextureIndex();
             for (i = 0; i < len; i++) {
-                vc = plunginList[i].getVertexCode(renderType);
-                fc = plunginList[i].getFragmentCode(renderType);
+                vc = plunginList[i].getVertexCode();
+                fc = plunginList[i].getFragmentCode();
                 if (vc) {
                     agalVertexVoList = agalVertexVoList.concat(vc);
                 }
@@ -124,6 +124,11 @@ module aoi {
         }
         public render(gl:WebGLRenderingContext, target:IRenderable, camera:ICamera, renderType:number):void {
             var sub:ISubGeometry, i:number, subGeometries:Array<ISubGeometry> = target.geometry.subGeometries, len:number = target.geometry.numSubGeometry;
+            let collect:PlunginCollecter = target.getPluginCollector(renderType);
+            if(collect == null)
+            {
+                return;
+            }
             var cullState = target.getCullState(gl);
             if(AoiShader.cullState != cullState)
             {
@@ -135,10 +140,10 @@ module aoi {
                 gl.useProgram(program);
                 sub = subGeometries[i];
                 var indexBuffer:WebGLBuffer = sub.getIndexBuffer(gl);
-                target.pluginCollector.activeSub(gl, sub, target, camera, program, renderType);
+                collect.activeSub(gl, sub, target, camera, program, renderType);
                 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
                 gl.drawElements(gl.TRIANGLES, sub.numIndex, gl.UNSIGNED_SHORT, 0);
-                target.pluginCollector.disactiveSub(gl, program);
+                collect.disactiveSub(gl, program);
             }
         }
     }

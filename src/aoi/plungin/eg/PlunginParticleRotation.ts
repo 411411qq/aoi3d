@@ -14,7 +14,7 @@ module aoi {
             arr.push(new aoi.PlunginParticleRotOrMove());
             return arr;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._vertexCode.push(new OpenGlCodeVo(21000, this, this.genVertexCode1));
         }
         private genVertexCode1():string

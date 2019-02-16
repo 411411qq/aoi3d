@@ -8,7 +8,7 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.C_NORMAL;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(100, this, this.genFramentCode1));
         }
         private genFramentCode1():string {

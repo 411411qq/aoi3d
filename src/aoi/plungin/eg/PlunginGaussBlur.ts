@@ -25,7 +25,7 @@ module aoi {
         {
             gl.uniform3fv(program["u_gaussData"], this._data);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
         }
         private genFramentCode1():string
         {

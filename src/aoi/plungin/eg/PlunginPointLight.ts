@@ -21,7 +21,7 @@ module aoi {
         {
             this.pointLight = val;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._fragmentCode.push(new OpenGlCodeVo(30003, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(85301, this, this.genFramentCode2));

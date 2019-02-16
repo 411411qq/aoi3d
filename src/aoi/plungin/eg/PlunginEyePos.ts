@@ -25,7 +25,7 @@ module aoi {
                 gl.uniform4fv(program["u_eye"], eyePos.elements);
             }
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._vertexCode.push(new OpenGlCodeVo(101, this, this.genVertexCode1));
             this._vertexCode.push(new OpenGlCodeVo(70401, this, this.genVertexCode2));

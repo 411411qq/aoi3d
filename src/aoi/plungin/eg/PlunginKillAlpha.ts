@@ -25,7 +25,7 @@ module aoi {
         	this._alphas[0] = type;
         	this._alphas[1] = alpha;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
         	this._fragmentCode.push(new OpenGlCodeVo(50, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(85000, this, this.genFramentCode2));
         }

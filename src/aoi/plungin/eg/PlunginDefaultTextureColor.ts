@@ -9,7 +9,7 @@ module aoi {
             this.type = PlunginDefine.DEFAULT_COLOR;
             this._replaceType = PlunginDefine.REPLACE_TEXTURE_COLOR;
         }
-        public updateCode(renderType:number):void 
+        public updateCode():void 
         {
             this._fragmentCode.push(new OpenGlCodeVo(70000, this, this.genFramentCode4));
         }

@@ -8,7 +8,7 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.UV_MASK_DATA;
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
             this._fragmentCode.push(new OpenGlCodeVo(70400, this, this.genFramentCode3));
         }
         private genFramentCode3():string 

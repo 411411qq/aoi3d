@@ -4,7 +4,7 @@ module aoi {
         public geometry:Geometry;
         public material:IMaterial;
         private m_finalMatrix:Matrix4;
-        private m_pluginCollector:PlunginCollecter;
+        private m_pluginRenders:Object;
         private m_animatorData:AnimatorPlayData;
         private m_cullState:number = -1;
 
@@ -14,7 +14,7 @@ module aoi {
             this.material = mat;
             this.m_finalMatrix = new Matrix4();
             this.m_isRenderAble = true;
-            this.m_pluginCollector = new PlunginCollecter();
+            this.m_pluginRenders = {};
             this.m_animatorData = null;
             this.m_mouseEnable = false;
         }
@@ -35,16 +35,20 @@ module aoi {
             return false;
         }
 
-        public addPlugin(vo:IPlunginVo):void {
-            this.m_pluginCollector.addPlugin(vo);
+        public addPlugin(vo:IPlunginVo, renderType:number = 1):void {
+            if(this.m_pluginRenders[renderType] == null)
+            {
+                this.m_pluginRenders[renderType] = new PlunginCollecter();
+            }
+            this.m_pluginRenders[renderType].addPlugin(vo);
         }
 
-        public removePlugin(type:number):void {
-            this.m_pluginCollector.removePlugin(type);
+        public removePlugin(type:number, renderType:number = 1):void {
+            this.m_pluginRenders[renderType].removePlugin(type);
         }
 
-        public get pluginCollector():PlunginCollecter {
-            return this.m_pluginCollector;
+        public getPluginCollector(renderType:number = 1):PlunginCollecter {
+            return this.m_pluginRenders[renderType] as PlunginCollecter;
         }
 
         public get animatorData():AnimatorPlayData {
@@ -61,7 +65,12 @@ module aoi {
         }
 
         public get hasAlpha() {
-            if (this.m_pluginCollector.mode == PlunginDefine.NORMAL && this.m_pluginCollector.hAlpha == false) {
+            let norRender:PlunginCollecter = this.getPluginCollector();
+            if(norRender == null)
+            {
+                return false;
+            }
+            if (norRender.mode == PlunginDefine.NORMAL && norRender.hAlpha == false) {
                 return false;
             }
             else {
@@ -83,9 +92,15 @@ module aoi {
             this.m_finalMatrix.append(cam.viewProjection);
         }
 
-        public updateShader(gl:WebGLRenderingContext, cam:ICamera, renderType:number) {
-            var shader:AoiShader = this.m_pluginCollector.getShader(renderType);
-            this.m_pluginCollector.active(gl);
+        public updateShader(gl:WebGLRenderingContext, cam:ICamera, renderType:number) 
+        {
+            let norRender:PlunginCollecter = this.getPluginCollector(renderType);
+            if(norRender == null)
+            {
+                return;
+            }
+            var shader:AoiShader = norRender.getShader();
+            norRender.active(gl);
             shader.render(gl, this, cam, renderType);
         }
 

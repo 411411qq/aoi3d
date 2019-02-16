@@ -37,7 +37,7 @@ module aoi {
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             gl.uniform3fv(program["u_zoomData"], this._zoomData);
         }
-        public updateCode(renderType:number):void {
+        public updateCode():void {
         	this._fragmentCode.push(new OpenGlCodeVo(50, this, this.genFramentCode1));
             this._fragmentCode.push(new OpenGlCodeVo(70000, this, this.genFramentCode2));
         }

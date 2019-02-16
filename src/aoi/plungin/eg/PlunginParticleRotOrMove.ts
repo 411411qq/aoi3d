@@ -15,7 +15,7 @@ module aoi {
             var buffer:WebGLBuffer = subGeo.getVertexBuffer(gl), FSIZE = subGeo.bytesPerEle, perLen = subGeo.vertexStride;
             this.initAttributeVariable(gl, program["a_parMove"], buffer, 4, FSIZE * perLen, FSIZE * 12);
         }
-        public updateCode(renderType:number) {
+        public updateCode() {
             this._vertexCode.push(new OpenGlCodeVo(100, this, this.genVertexCode1));
         }
         public getAttArr() {
