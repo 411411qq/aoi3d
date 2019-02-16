@@ -22,7 +22,6 @@ module aoi
         {
             this.skyRes = PluralAssetManager.instance.gain(key, "SkyBox") as SkyBoxPluralAsset;
             this.cubeTexture = this.skyRes.cubeTexture;
-            this.setShowInCameraState(Define.CAM_NORMAL, true);
             this.geometry = new CubeGeometry(this.size,this.size,this.size);
             this.material = new Material(this.cubeTexture);
             this.addPlugin(new aoi.PlunginSkyBox());

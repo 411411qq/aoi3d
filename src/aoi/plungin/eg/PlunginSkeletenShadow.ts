@@ -9,6 +9,8 @@ module aoi {
             this.type = PlunginDefine.SKELETEN_SHADOW;
             this.txtIndex = 0;
             this.shadowVar = new math.Vector3D();
+            this._replaceType = PlunginDefine.REPLACE_MAIN;
+            this._replaceWeight = 12;
         }
         public getAttArr():Array<any> {
             var arr = super.getAttArr();

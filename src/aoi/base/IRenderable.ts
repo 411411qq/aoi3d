@@ -1,8 +1,8 @@
 module aoi {
      import Matrix4 = math.Matrix4;
      export interface IRenderable extends IBoundsOwner {
-          addPlugin(vo:IPlunginVo):void;
-          removePlugin(type:number):void;
+          addPlugin(vo:IPlunginVo, renderType:number):void;
+          removePlugin(type:number, renderType:number):void;
           getPluginCollector(renderType:number):PlunginCollecter;
 
           material:IMaterial;

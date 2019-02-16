@@ -7,6 +7,8 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.PARTICLE_PERTURBATION;
             this.txtIndex = 0;
+            this._replaceType = PlunginDefine.REPLACE_MAIN;
+            this._replaceWeight = 12;
         }
         public updateCode():void 
         {

@@ -19,7 +19,7 @@ module aoi {
             this._height = h;
             this._camera = cam;
             this._type = type;
-            this._clearColor = new math.Vector3D(0.0,0.0,0.0,1.0);
+            this._clearColor = new math.Vector3D(0.5,0.5,0.5,1.0);
         }
         public addRenderItem(item:Object3DContainer):void
         {

@@ -73,14 +73,11 @@ module editor
             //this._view.camera.projection.offsetPos(- 603 / 2, 0, 0);
 
             this._cameraController = new HoverController(this._view.camera);
-            this._cameraController.distance = 150;
+            this._cameraController.distance = 700;
             this._cameraController.minTiltAngle = 0;
             this._cameraController.maxTiltAngle = 90;
             this._cameraController.panAngle = 45;
             this._cameraController.tiltAngle = 20;
-            this._cameraController.steps = 1;
-
-            //new aoi.InfoTrace();
 
             base.Util.loadScript("res/js/Stats.js");
         }
@@ -93,7 +90,6 @@ module editor
             this.scenceContainer = new Object3DContainer(false);
             this._view.addRootObject(this.scenceContainer);
             this._cameraController.lookAtObject = this.scenceContainer;
-            this._cameraController.update();
             var s = this;
             FrameTimerManager.instance.add("main", 16, 0, this, this.onEnterFrame);
             GlobelConst.view = this._view;
@@ -109,9 +105,8 @@ module editor
             this.preAssets.push({path:"res/noise_1.png", type:AssetDefine.ASSET_TEXTURE});
             this.preAssets.push({path:"res/noise_2.png", type:AssetDefine.ASSET_TEXTURE});
             this.preAssets.push({path:"res/area.png", type:AssetDefine.ASSET_TEXTURE});
-            //this.preAssets.push({path:"res/julang.mmv", type:AssetDefine.ASSET_MD5MESH_BY});
-            //this.preAssets.push({path:"res/julang.mav", type:AssetDefine.ASSET_MD5ANIM_BY});
-            //this.preAssets.push({path:"res/scene/xinshoucun/xinshoucun.scene", type:AssetDefine.ASSET_SCENE});
+            this.preAssets.push({path:"res/julang.mmv", type:AssetDefine.ASSET_MD5MESH_BY});
+            this.preAssets.push({path:"res/julang.mav", type:AssetDefine.ASSET_MD5ANIM_BY});
             //AssetManager.instance.fetch(UIDefine.DEFAULT, AssetDefine.ASSET_ALTAS, this, this.onObjLoaded);
             this.checkLoaded(null);
             
@@ -142,33 +137,101 @@ module editor
         }
         private onObjLoaded(param:LoaderData):void
         {
-            
+            /*
             var rp:RightPanel = new RightPanel();
-            this._view.add2DObject(rp);
+            this._view.rootCon2d.addChild(rp);
             this.winContainer = new UiConainer();
-            this._view.add2DObject(this.winContainer);
-            
+            this._view.rootCon2d.addChild(this.winContainer);
+            */
             this.main = new aoi.EffectGroup();
             this.main.data = DataCenter.instance.mainData;
             this.scenceContainer.addChild(this.main);
 
             //this.showPanel();
         }
+        private planeMesh:aoi.Mesh;
+        private lightMesh:aoi.Mesh;
+
+        private buildParticleGeometry():aoi.ParticleSubGeometry
+        {
+            var parNum:number = 50;
+            var p_geo:aoi.ParticleSubGeometry = new aoi.ParticleSubGeometry(4 * parNum, 6 * parNum);
+            for(var i:number = 0; i<parNum; i++)
+            {
+                var offsetIndex:number = i * 4;
+                p_geo.addIndex(0 + offsetIndex, 1 + offsetIndex, 2 + offsetIndex);
+                p_geo.addIndex(3 + offsetIndex, 2 + offsetIndex, 1 + offsetIndex);
+
+                p_geo.addVertexPos(-25, 25, 0, i);
+                p_geo.addVertexPos(-25, -25, 0, i);
+                p_geo.addVertexPos(25, 25, 0, i);
+                p_geo.addVertexPos(25, -25, 0, i);
+
+                p_geo.addVertexUv(1,0);
+                p_geo.addVertexUv(1,1);
+                p_geo.addVertexUv(0,0);
+                p_geo.addVertexUv(0,1);
+
+                var a1:number = math.MathUtil.getRandomNumberBetween(3,5);
+                var a2:number = math.MathUtil.getRandomNumberBetween(0.5, 1.5);
+                p_geo.addVertexOffsetTime(a1, a2);
+                p_geo.addVertexOffsetTime(a1, a2);
+                p_geo.addVertexOffsetTime(a1, a2);
+                p_geo.addVertexOffsetTime(a1, a2);
+
+                var a3:number = math.MathUtil.getRandomNumberBetween(0,0);
+                var a4:number = math.MathUtil.getRandomNumberBetween(0,0);
+                p_geo.addVertexOffsetPos(a3,a4, 0);
+                p_geo.addVertexOffsetPos(a3,a4, 0);
+                p_geo.addVertexOffsetPos(a3,a4, 0);
+                p_geo.addVertexOffsetPos(a3,a4, 0);
+
+                var a5:number = math.MathUtil.getRandomNumberBetween(-500,500);
+                var a6:number = math.MathUtil.getRandomNumberBetween(-500,500);
+                var a7:number = math.MathUtil.getRandomNumberBetween(-500,500);
+                var a8:number = math.MathUtil.getRandomNumberBetween(-30,30);
+                p_geo.addVertexSpeed(a5, a6, a7, a8);
+                p_geo.addVertexSpeed(a5, a6, a7, a8);
+                p_geo.addVertexSpeed(a5, a6, a7, a8);
+                p_geo.addVertexSpeed(a5, a6, a7, a8);
+            }
+
+            p_geo.buildGeometry();
+
+            return p_geo;
+        }
 
         private onPreLoaded():void
         {
-            var urls:Array<string> = [];
-            urls.push("res/sky/rightcity.jpg");
-            urls.push("res/sky/leftcity.jpg");
-            urls.push("res/sky/botcity.jpg");
-            urls.push("res/sky/topcity.jpg");
-            urls.push("res/sky/frontcity.jpg");
-            urls.push("res/sky/backcity.jpg");
-            let sky = new aoi.SkyBox(urls, 1500);
-            sky.scaleX = -1;
-            sky.scaleY = -1;
-            sky.scaleZ = -1;
-            this.scenceContainer.addChild(sky);
+            var geo:aoi.Geometry = new aoi.Geometry();
+            geo.addSubGeometry(this.buildParticleGeometry());
+            geo.animator = new aoi.ParticleAnimator();
+            var mat:aoi.IMaterial = new aoi.Material(this.loadedAssets[0]["texture"]);
+
+            this.planeMesh = new aoi.Mesh(geo, mat);
+            this.planeMesh.y = 40;
+            //this.planeMesh.setShowInCameraState(Define.CAM_SHADOW, true);
+            this.planeMesh.addPlugin(new aoi.PlunginParticlePerturbation());
+            var ppm:aoi.PlunginParticleMove = new aoi.PlunginParticleMove();
+            this.planeMesh.addPlugin(ppm);
+
+            let pp:aoi.PlunginPerturbation = new aoi.PlunginPerturbation();
+            //pp.setAreaTexture(new aoi.Material(this.loadedAssets[5]["texture"]));
+            pp.setTexture(new aoi.Material(this.loadedAssets[3]["texture"]));
+            pp.setData(0.01, 0.01, 0.2, 0.2);
+            this.planeMesh.addPlugin(pp);
+            this.planeMesh.addPlugin(new aoi.PlunginBillboard());
+
+            this.planeMesh.getPluginCollector().setParamMode(PlunginDefine.NORMAL, true, true, true);
+            this.scenceContainer.addChild(this.planeMesh);
+
+            var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(this.loadedAssets[0]["texture"]));
+            //plane2.setShowInCameraState(Define.CAM_SHADOW, true);
+            plane2.addPlugin(new aoi.PlunginSimple());
+            plane2.addPlugin(new aoi.PlunginSimple(), Define.CAM_PERTURBATION);
+
+            plane2.getPluginCollector().setParamMode(PlunginDefine.NORMAL, false, true, true);
+            this.scenceContainer.addChild(plane2);
         }
 
         private onLineBgLoaded(param:LoaderData):void
@@ -176,9 +239,9 @@ module editor
 			var ass:TextureAsset = AssetManager.instance.gain(param.path, "main") as TextureAsset;
             var geo:PlaneGeometry = new PlaneGeometry(1024,1024, Define.XZ);
             this.bgxy = new Mesh(geo, new aoi.Material(ass.texture));
-            this.bgxy.addPlugin(new aoi.PlunginSimple());
+            this.bgxy.addPlugin(new PlunginSimple());
             this.bgxy.addPlugin(new PlunginKillAlpha(0, 0.1));
-            this.bgxy.getPluginCollector(Define.CAM_NORMAL).setParamMode(PlunginDefine.NORMAL, true, true, false);
+            this.bgxy.getPluginCollector().setParamMode(PlunginDefine.NORMAL, true, true, false);
             this.scenceContainer.addChild(this.bgxy);
         }
         private onMeshClick(event):void
@@ -194,32 +257,44 @@ module editor
             AssetManager.instance.addAssetClass(AssetDefine.ASSET_ALTAS, AltasAsset);
             AssetManager.instance.addAssetClass(AssetDefine.ASSET_MD5MESH_BY, aoi.Md5MeshByAsset);
             AssetManager.instance.addAssetClass(AssetDefine.ASSET_MD5ANIM_BY, aoi.Md5AnimByAsset);
-            AssetManager.instance.addAssetClass(AssetDefine.ASSET_SCENE, aoi.SceneAsset);
         }
+
         private onEnterFrame():void
         {
+            var t:number = (new Date()).getTime() / 10;
             if (this.move)
             {
-                var cp = 0.3 * (this.sx - this.lastMouseX) + this.lastPanAngle;
-                var ct = 0.3 * (this.sy - this.lastMouseY) + this.lastTiltAngle;
-                this._cameraController.panAngle = cp;
-                this._cameraController.tiltAngle = ct;
+                this._cameraController.panAngle = 0.3 * (this.sx - this.lastMouseX) + this.lastPanAngle;
+                this._cameraController.tiltAngle = 0.3 * (this.sy - this.lastMouseY) + this.lastTiltAngle;
                 this._cameraController.update();
+            }
+            if(this.planeMesh != null)
+            {
+                this.vvv1 ++;
+                //this.planeMesh.rotationX = this.vvv1 * 0.2;
+                //this.planeMesh.rotationY = this.vvv1 * 0.2;
+                //this.planeMesh.rotationZ = this.vvv1 * 0.2;
+            }
+            if(this.planeMesh != null)
+            {
+                this.vvv2++;
+                this.planeMesh.x = 100 * Math.sin(this.vvv2 * 0.02);
+                this.planeMesh.z = 100 * Math.cos(this.vvv2 * 0.02);
             }
             this._view.render();
         }
+        private vvv1:number = 0;
+        private vvv2:number = 0;
+        private vvv3:number = 0;
         public onMouseAct(evt:any):void {
             switch (evt.data.type) {
                 case "mousedown":
-                case "touchstart":
                     this.onMouseDown(evt.data);
                     break;
                 case "mousemove":
-                case "touchmove":
                     this.onMouseMove(evt.data);
                     break;
                 case "mouseup":
-                case "touchend":
                     this.onMouseUp(evt.data);
                     break;
             }
@@ -229,11 +304,8 @@ module editor
             var e = evt || window.event;
             this.lastPanAngle = this._cameraController.panAngle;
             this.lastTiltAngle = this._cameraController.tiltAngle;
-            var mouseObj:Object = Util.getMousePos(e, 0);
-            this.lastMouseX = mouseObj["x"];
-            this.lastMouseY = mouseObj["y"];
-            this.sx = mouseObj["x"];
-            this.sy = mouseObj["y"];
+            this.lastMouseX = e.clientX;
+            this.lastMouseY = e.clientY;
             this.move = true;
         }
 
@@ -243,9 +315,8 @@ module editor
 
         private onMouseMove(evt:any):void {
             var e = evt || window.event;
-            var mouseObj:Object = Util.getMousePos(e, 0);
-            this.sx = mouseObj["x"];
-            this.sy = mouseObj["y"];
+            this.sx = e.clientX;
+            this.sy = e.clientY;
         }
         private showPanel():void
         {

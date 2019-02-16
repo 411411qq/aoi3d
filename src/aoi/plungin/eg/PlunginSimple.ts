@@ -7,6 +7,8 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE;
             this.txtIndex = 0;
+            this._replaceType = PlunginDefine.REPLACE_MAIN;
+            this._replaceWeight = 1;
         }
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void {
             super.active(gl, subGeo, target, camera, program, renderType);

@@ -7,6 +7,8 @@ module aoi {
             this.limitNum = 1;
             this.type = PlunginDefine.SKELETEN;
             this.txtIndex = 0;
+            this._replaceType = PlunginDefine.REPLACE_MAIN;
+            this._replaceWeight = 10;
         }
         public updateCode():void {
             super.updateCode();

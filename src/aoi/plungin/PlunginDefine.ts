@@ -10,7 +10,8 @@ module aoi {
         public static NEW_BLEND_14:number = 8;
         public static NEW_BLEND_15:number = 9;
 
-        public static REPLACE_TEXTURE_COLOR = 1;
+        public static REPLACE_TEXTURE_COLOR:number = 1;
+        public static REPLACE_MAIN:number = 2;
 
         public static SIMPLE:number = 1;
         public static SIMPLE_SHADOW:number = 50;

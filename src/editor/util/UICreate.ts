@@ -25,7 +25,6 @@ module editor
             btn.normal = "btn_normal";
             btn.horver = "btn_over";
             btn.clicked = "btn_press";
-            btn.setShowInCameraState(Define.CAM_2D, true);
             return btn;
         }
     }

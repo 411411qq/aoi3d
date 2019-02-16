@@ -22,7 +22,6 @@ var aoi;
         SkyBox.prototype.onImageLoaded = function (key, obj) {
             this.skyRes = aoi.PluralAssetManager.instance.gain(key, "SkyBox");
             this.cubeTexture = this.skyRes.cubeTexture;
-            this.setShowInCameraState(aoi.Define.CAM_NORMAL, true);
             this.geometry = new aoi.CubeGeometry(this.size, this.size, this.size);
             this.material = new aoi.Material(this.cubeTexture);
             this.addPlugin(new aoi.PlunginSkyBox());

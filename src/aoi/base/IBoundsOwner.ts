@@ -8,8 +8,5 @@ module aoi {
         position:Vector3D;
         sceneTransform:Matrix4;
         inverseSceneTransform:Matrix4;
-
-        canShowInCamera(camIndex:number):boolean;
-        setShowInCameraState(camIndex:number, val:boolean):void;
     }
 }

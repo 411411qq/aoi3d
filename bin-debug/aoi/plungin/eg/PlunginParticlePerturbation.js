@@ -17,6 +17,8 @@ var aoi;
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.PARTICLE_PERTURBATION;
             _this.txtIndex = 0;
+            _this._replaceType = aoi.PlunginDefine.REPLACE_MAIN;
+            _this._replaceWeight = 12;
             return _this;
         }
         PlunginParticlePerturbation.prototype.updateCode = function () {

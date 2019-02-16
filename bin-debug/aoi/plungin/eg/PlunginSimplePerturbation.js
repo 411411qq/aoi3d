@@ -17,6 +17,8 @@ var aoi;
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SIMPLE_PERTURBATION;
             _this.txtIndex = 0;
+            _this._replaceType = aoi.PlunginDefine.REPLACE_MAIN;
+            _this._replaceWeight = 2;
             return _this;
         }
         PlunginSimplePerturbation.prototype.active = function (gl, subGeo, target, camera, program, renderType) {

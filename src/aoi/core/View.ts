@@ -43,9 +43,7 @@ module aoi {
             this.cam2d = new Camera3D(0,0,-1000, pro2d);
             this.cam2d.lookAt(new Vector3D(0,0,0), Vector3D.Y_AXIS);
             this.rootContainer = new Object3DContainer(true);
-            this.rootContainer.setShowInCameraState(Define.CAM_NORMAL, true);
             this.rootCon2d = new UiConainer(true);
-            this.rootCon2d.setShowInCameraState(Define.CAM_2D, true);
             this.gl = null;
             GlobelConst.view = this;
 
@@ -56,13 +54,11 @@ module aoi {
 
         public addRootObject(obj:Object3DContainer):void
         {
-            obj.setShowInCameraState(Define.CAM_NORMAL, true);
             this.rootContainer.addChild(obj);
         }
 
         public add2DObject(obj:Object3DContainer):void
         {
-            obj.setShowInCameraState(Define.CAM_2D, true);
             this.rootCon2d.addChild(obj);
         }
 

@@ -18,6 +18,8 @@ var aoi;
             _this.type = aoi.PlunginDefine.PARTICLE_SHADOW;
             _this.txtIndex = 0;
             _this.shadowVar = new math.Vector3D();
+            _this._replaceType = aoi.PlunginDefine.REPLACE_MAIN;
+            _this._replaceWeight = 12;
             return _this;
         }
         PlunginParticleShadow.prototype.getAttArr = function () {

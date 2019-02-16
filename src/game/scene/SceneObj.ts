@@ -20,7 +20,6 @@ module aoi {
             else
             {
                 o = new SceneThing(sa.getGeo(list["geoName"]), list["textureName"]);
-                o.setShowInCameraState(Define.CAM_NORMAL, true);
                 (o as Mesh).addPlugin(new aoi.PlunginSimple());
                 (o as Mesh).addPlugin(new aoi.PlunginKillAlpha(0,0.7));
                 let fog:aoi.PlunginFog = new aoi.PlunginFog();

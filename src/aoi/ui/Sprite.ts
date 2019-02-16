@@ -27,10 +27,10 @@ module aoi
             this._rect.y = - height;
             this.width = width;
             this.height = height;
+
+            this.addPlugin(new PlunginSimple(),Define.CAM_2D)
             let collect:PlunginCollecter = this.getPluginCollector(Define.CAM_2D);
-            collect.addPlugin(new PlunginSimple())
             collect.setParamMode(PlunginDefine.NORMAL, true, true);
-            this.setShowInCameraState(Define.CAM_2D, true);
         }
         public get rect():Rectangle
         {
@@ -231,10 +231,10 @@ module aoi
             this._rect = new Rectangle(0,0,width,height);
             this.width = width;
             this.height = height;
+            
+            this.addPlugin(new PlunginSimple(), Define.CAM_2D);
             let collect:PlunginCollecter = this.getPluginCollector(Define.CAM_2D);
-            collect.addPlugin(new PlunginSimple())
             collect.setParamMode(PlunginDefine.NORMAL, true, true);
-            this.setShowInCameraState(Define.CAM_2D, true);
         }
         public get rect():Rectangle
         {

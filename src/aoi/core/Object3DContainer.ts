@@ -19,8 +19,6 @@ module aoi {
 
         protected m_isRenderAble:boolean = false;
 
-        protected m_actionState:base.ActionState = new base.ActionState();
-
         public setParent(value:Object3DContainer):void {
             this.m_parent = value;
             this.notifySceneTransformChange();
@@ -219,12 +217,10 @@ module aoi {
             var child:Object3DContainer;
             for (i = 0; i < this.m_children.length; i++) {
                 child = this.m_children[i];
-                if (child.m_isRenderAble) 
+                if (child.m_isRenderAble
+                    && (child as Mesh).getPluginCollector(renderType) != null) 
                 {
-                    if (child.canShowInCamera(renderType)) 
-                    {
-                        renderList.addRender(child, camera, checkInFrustum);
-                    }
+                    renderList.addRender(child, camera, checkInFrustum);
                 }
                 child.createRenderList(context, camera, renderType, renderList, checkInFrustum);
             }
@@ -242,16 +238,6 @@ module aoi {
                 return this.m_alpha * this.m_parent.alpha;
             }
             return this.m_alpha;
-        }
-
-        public canShowInCamera(camIndex:number):boolean
-        {
-            return this.m_actionState.getState(camIndex);
-        }
-
-        public setShowInCameraState(camIndex:number, val:boolean):void
-        {
-            this.m_actionState.setState(camIndex, val);
         }
     }
 }
