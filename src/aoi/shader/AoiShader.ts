@@ -123,27 +123,31 @@ module aoi {
             return program;
         }
         public render(gl:WebGLRenderingContext, target:IRenderable, camera:ICamera, renderType:number):void {
-            var sub:ISubGeometry, i:number, subGeometries:Array<ISubGeometry> = target.geometry.subGeometries, len:number = target.geometry.numSubGeometry;
-            let collect:PlunginCollecter = target.getPluginCollector(renderType);
-            if(collect == null)
+            var sub:ISubGeometry, i:number, j:number, subGeometries:Array<ISubGeometry> = target.geometry.subGeometries, len:number = target.geometry.numSubGeometry;
+            let collects:Array<PlunginCollecter> = target.getPluginCollectorList(renderType);
+            if(collects == null)
             {
                 return;
             }
-            var cullState = target.getCullState(gl);
-            if(AoiShader.cullState != cullState)
+            for(j=0;j<collects.length; j++)
             {
-                gl.cullFace(cullState);
-                AoiShader.cullState = cullState;
-            }
-            var program = this.getProgram(gl);
-            for (i = 0; i < len; i++) {
-                gl.useProgram(program);
-                sub = subGeometries[i];
-                var indexBuffer:WebGLBuffer = sub.getIndexBuffer(gl);
-                collect.activeSub(gl, sub, target, camera, program, renderType);
-                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-                gl.drawElements(gl.TRIANGLES, sub.numIndex, gl.UNSIGNED_SHORT, 0);
-                collect.disactiveSub(gl, program);
+                let collect:PlunginCollecter = collects[j];
+                var cullState = target.getCullState(gl);
+                if(AoiShader.cullState != cullState)
+                {
+                    gl.cullFace(cullState);
+                    AoiShader.cullState = cullState;
+                }
+                var program = this.getProgram(gl);
+                for (i = 0; i < len; i++) {
+                    gl.useProgram(program);
+                    sub = subGeometries[i];
+                    var indexBuffer:WebGLBuffer = sub.getIndexBuffer(gl);
+                    collect.activeSub(gl, sub, target, camera, program, renderType);
+                    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+                    gl.drawElements(gl.TRIANGLES, sub.numIndex, gl.UNSIGNED_SHORT, 0);
+                    collect.disactiveSub(gl, program);
+                }
             }
         }
     }

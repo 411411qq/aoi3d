@@ -3,7 +3,8 @@ module aoi {
      export interface IRenderable extends IBoundsOwner {
           addPlugin(vo:IPlunginVo, renderType:number):void;
           removePlugin(type:number, renderType:number):void;
-          getPluginCollector(renderType:number):PlunginCollecter;
+          getPluginCollectorList(camType:number):Array<PlunginCollecter>;
+          getPluginCollector(collectType:number):PlunginCollecter;
 
           material:IMaterial;
           geometry:Geometry;

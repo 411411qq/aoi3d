@@ -7,6 +7,7 @@ module aoi {
         private m_pluginRenders:Object;
         private m_animatorData:AnimatorPlayData;
         private m_cullState:number = -1;
+        private m_camCollectors:Object;
 
         constructor(geo:Geometry, mat:IMaterial, buildBound:boolean = true) {
             super(buildBound);
@@ -35,20 +36,41 @@ module aoi {
             return false;
         }
 
-        public addPlugin(vo:IPlunginVo, renderType:number = 1):void {
-            if(this.m_pluginRenders[renderType] == null)
+        public addPlugin(vo:IPlunginVo, collectType:number = 1):void {
+            if(this.m_pluginRenders[collectType] == null)
             {
-                this.m_pluginRenders[renderType] = new PlunginCollecter();
+                this.m_pluginRenders[collectType] = new PlunginCollecter();
+                this.m_camCollectors = null;
             }
-            this.m_pluginRenders[renderType].addPlugin(vo);
+            this.m_pluginRenders[collectType].addPlugin(vo);
         }
 
-        public removePlugin(type:number, renderType:number = 1):void {
-            this.m_pluginRenders[renderType].removePlugin(type);
+        public removePlugin(type:number, collectType:number = 1):void {
+            this.m_pluginRenders[collectType].removePlugin(type);
         }
-
-        public getPluginCollector(renderType:number = 1):PlunginCollecter {
-            return this.m_pluginRenders[renderType] as PlunginCollecter;
+        public getPluginCollector(collectType:number = 1):PlunginCollecter
+        {
+            return this.m_pluginRenders[collectType] as PlunginCollecter;
+        }
+        public getPluginCollectorList(camType:number = 1):Array<PlunginCollecter> {
+            if(this.m_camCollectors == null)
+            {
+                this.m_camCollectors = {};
+            }
+            if(this.m_camCollectors[camType] == null)
+            {
+                let list:Array<number> = aoi.Define.getCollectTypes(camType);
+                let rs:Array<PlunginCollecter> = [];
+                for(let i:number = 0; i<list.length; i++)
+                {
+                    if(this.m_pluginRenders[list[i]] != null)
+                    {   
+                        rs.push(this.m_pluginRenders[list[i]]);
+                    }
+                }
+                this.m_camCollectors[camType] = rs;
+            }
+            return this.m_camCollectors[camType];
         }
 
         public get animatorData():AnimatorPlayData {
