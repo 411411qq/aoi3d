@@ -1,9 +1,9 @@
 module aoi {
     /** 骨骼动画基础 */
-    export class PlunginSkeletenBase extends PlunginVoBase {
+    export class PlunginSkeletenBase extends PlunginMainBase {
         private skeleton:Skeleton;
-        constructor(skeleton:Skeleton) {
-            super();
+        constructor(skeleton:Skeleton, precision:number) {
+            super(precision);
             this.skeleton = skeleton;
         }
 
@@ -147,13 +147,6 @@ module aoi {
 
         private genVertexCode5() {
             var str = '}\n';
-            return str;
-        }
-
-        private genFramentCode1() {
-            var str = '#ifdef GL_ES\n' +
-                'precision mediump float;\n' +
-                '#endif\n';
             return str;
         }
 

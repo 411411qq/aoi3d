@@ -104,14 +104,19 @@ module aoi {
 
         public updateShader(gl:WebGLRenderingContext, cam:ICamera, renderType:number) 
         {
-            let norRender:PlunginCollecter = this.getPluginCollector(renderType);
-            if(norRender == null)
+            let renderList:Array<PlunginCollecter> = this.getPluginCollectorList(renderType);
+            if(renderList == null)
             {
                 return;
             }
-            var shader:AoiShader = norRender.getShader();
-            norRender.active(gl);
-            shader.render(gl, this, cam, renderType);
+            let len:number = renderList.length;
+            for(var i:number = 0; i <len; i++)
+            {
+                let norRender:PlunginCollecter = renderList[i];
+                var shader:AoiShader = norRender.getShader();
+                norRender.active(gl);
+                shader.render(gl, this, cam, renderType, norRender);
+            }
         }
 
         public canRenderChack() {

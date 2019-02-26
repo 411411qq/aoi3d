@@ -1,8 +1,7 @@
 module aoi {
-    /** 粒子基础 */
     export class PlunginParticlePerturbation extends PlunginParticleBase {
-        constructor() {
-            super();
+        constructor(precision:number = 2) {
+            super(precision);
             this._key = "ParPer";
             this.limitNum = 1;
             this.type = PlunginDefine.PARTICLE_PERTURBATION;

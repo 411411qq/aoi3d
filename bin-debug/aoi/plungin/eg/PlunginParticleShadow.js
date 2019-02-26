@@ -11,8 +11,9 @@ var aoi;
     /** 粒子基础 */
     var PlunginParticleShadow = (function (_super) {
         __extends(PlunginParticleShadow, _super);
-        function PlunginParticleShadow() {
-            var _this = _super.call(this) || this;
+        function PlunginParticleShadow(precision) {
+            if (precision === void 0) { precision = 2; }
+            var _this = _super.call(this, precision) || this;
             _this._key = "ParShdow";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.PARTICLE_SHADOW;

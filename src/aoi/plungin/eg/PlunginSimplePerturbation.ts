@@ -1,8 +1,8 @@
 module aoi {
     /** 渲染扰动 */
     export class PlunginSimplePerturbation extends PlunginSimpleBase {
-        constructor() {
-            super();
+        constructor(precision:number = 2) {
+            super(precision);
             this._key = "simplePertur";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE_PERTURBATION;

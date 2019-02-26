@@ -2,8 +2,8 @@ module aoi {
     /** 粒子基础 */
     export class PlunginParticleShadow extends PlunginParticleBase {
         private shadowVar:math.Vector3D;
-        constructor() {
-            super();
+        constructor(precision:number = 2) {
+            super(precision);
             this._key = "ParShdow";
             this.limitNum = 1;
             this.type = PlunginDefine.PARTICLE_SHADOW;

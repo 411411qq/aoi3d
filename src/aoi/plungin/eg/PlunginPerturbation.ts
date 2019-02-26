@@ -54,11 +54,13 @@ module aoi {
         }
         private genFramentCode2():string {
             var str:string = '';
+            str += "texCoord = (v_wpos.xy/v_wpos.w) * 0.5 + 0.5;\n";
             str += "vec3 normal = calNormal(texCoord + vec2(v_const.x * u_pertur.z, v_const.x * u_pertur.w), u_pNorTxt);\n";
             str += "vec2 p = -1.0 + 2.0 * texCoord;\n";
             str += "vec3 inVec = normalize(vec3(p, 0.0));\n";
             str += "vec3 refractVec = refract(inVec, normal, u_pertur.x);\n";
             str += "texCoord = (v_wpos.xy/v_wpos.w) * 0.5 + 0.5 + refractVec.xy * u_pertur.y;\n";
+            //str += "texCoord = (v_wpos.xy/v_wpos.w) * 0.5 + 0.5 + refractVec.xy * 0.001;\n;";
             return str;
         }
     }

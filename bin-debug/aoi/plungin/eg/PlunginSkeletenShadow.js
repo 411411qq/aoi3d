@@ -11,8 +11,9 @@ var aoi;
     /** 骨骼动画基础 */
     var PlunginSkeletenShadow = (function (_super) {
         __extends(PlunginSkeletenShadow, _super);
-        function PlunginSkeletenShadow(skeleton) {
-            var _this = _super.call(this, skeleton) || this;
+        function PlunginSkeletenShadow(skeleton, precision) {
+            if (precision === void 0) { precision = 2; }
+            var _this = _super.call(this, skeleton, precision) || this;
             _this._key = "skeletonshadow";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SKELETEN_SHADOW;

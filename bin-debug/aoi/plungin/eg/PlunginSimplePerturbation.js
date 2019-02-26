@@ -11,8 +11,9 @@ var aoi;
     /** 渲染扰动 */
     var PlunginSimplePerturbation = (function (_super) {
         __extends(PlunginSimplePerturbation, _super);
-        function PlunginSimplePerturbation() {
-            var _this = _super.call(this) || this;
+        function PlunginSimplePerturbation(precision) {
+            if (precision === void 0) { precision = 2; }
+            var _this = _super.call(this, precision) || this;
             _this._key = "simplePertur";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SIMPLE_PERTURBATION;

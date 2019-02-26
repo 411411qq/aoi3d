@@ -2,8 +2,8 @@ module aoi {
 /** 骨骼动画基础 */
     export class PlunginSkeletenShadow extends PlunginSkeletenBase {
         private shadowVar:math.Vector3D;
-        constructor(skeleton:Skeleton) {
-            super(skeleton);
+        constructor(skeleton:Skeleton, precision:number = 2) {
+            super(skeleton, precision);
             this._key = "skeletonshadow";
             this.limitNum = 1;
             this.type = PlunginDefine.SKELETEN_SHADOW;

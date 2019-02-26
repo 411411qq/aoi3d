@@ -2,8 +2,8 @@ module aoi {
     /** 渲染灰度图 */
     export class PlunginSimpleShadow extends PlunginSimpleBase {
         private shadowVar:math.Vector3D;
-        constructor() {
-            super();
+        constructor(precision:number = 2) {
+            super(precision);
             this._key = "simpleShadow";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE_SHADOW;

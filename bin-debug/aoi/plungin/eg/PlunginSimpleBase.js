@@ -10,8 +10,8 @@ var aoi;
 (function (aoi) {
     var PlunginSimpleBase = (function (_super) {
         __extends(PlunginSimpleBase, _super);
-        function PlunginSimpleBase() {
-            var _this = _super.call(this) || this;
+        function PlunginSimpleBase(precision) {
+            var _this = _super.call(this, precision) || this;
             _this._key = "";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SIMPLE;
@@ -56,10 +56,6 @@ var aoi;
             var str = '}\n';
             return str;
         };
-        PlunginSimpleBase.prototype.genFramentCode1 = function () {
-            var str = '#ifdef GL_ES\nprecision mediump float;\n#endif\n';
-            return str;
-        };
         PlunginSimpleBase.prototype.genFramentCode2 = function () {
             var str = 'varying vec2 v_TexCoord;\n' +
                 'uniform sampler2D u_Sampler;\n';
@@ -101,7 +97,7 @@ var aoi;
             gl.disableVertexAttribArray(program["a_TexCoord"]);
         };
         return PlunginSimpleBase;
-    }(aoi.PlunginVoBase));
+    }(aoi.PlunginMainBase));
     aoi.PlunginSimpleBase = PlunginSimpleBase;
     __reflect(PlunginSimpleBase.prototype, "aoi.PlunginSimpleBase");
 })(aoi || (aoi = {}));

@@ -1,8 +1,8 @@
 module aoi {
     /** 骨骼动画基础 */
     export class PlunginSkeleten extends PlunginSkeletenBase {
-        constructor(skeleton:Skeleton) {
-            super(skeleton);
+        constructor(skeleton:Skeleton, precision:number = 2) {
+            super(skeleton,precision);
             this._key = "skeleton";
             this.limitNum = 1;
             this.type = PlunginDefine.SKELETEN;

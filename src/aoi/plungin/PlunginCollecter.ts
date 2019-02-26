@@ -18,7 +18,7 @@ module aoi {
         private m_shader:AoiShader;
         private m_keyName:string;
 
-        private m_cullState:number;
+        private m_cullState:number = -1;
 
         constructor() {
             this.m_mode = PlunginDefine.NORMAL;

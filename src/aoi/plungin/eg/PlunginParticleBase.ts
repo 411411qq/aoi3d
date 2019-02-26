@@ -1,9 +1,9 @@
 module aoi {
     /** 粒子基础 */
-    export class PlunginParticleBase extends PlunginVoBase {
+    export class PlunginParticleBase extends PlunginMainBase {
         
-        constructor() {
-            super();
+        constructor(precision:number) {
+            super(precision);
             this.limitNum = 1;
             this.txtIndex = 0;
         }
@@ -132,12 +132,7 @@ module aoi {
             var str = '}\n';
             return str;
         }
-        public genFramentCode1() {
-            var str = '#ifdef GL_ES\n' +
-                'precision mediump float;\n' +
-                '#endif\n';
-            return str;
-        }
+        
         public genFramentCode2() {
             var str = 'varying vec2 v_TexCoord;\n' +
                 'varying vec4 v_Time;\n' +

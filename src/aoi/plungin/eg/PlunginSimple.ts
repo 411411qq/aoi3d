@@ -1,8 +1,8 @@
 module aoi {
     /** 渲染基础 */
     export class PlunginSimple extends PlunginSimpleBase {
-        constructor() {
-            super();
+        constructor(precision:number = 2) {
+            super(precision);
             this._key = "simple";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE;

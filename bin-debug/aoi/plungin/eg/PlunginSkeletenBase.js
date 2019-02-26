@@ -11,8 +11,8 @@ var aoi;
     /** 骨骼动画基础 */
     var PlunginSkeletenBase = (function (_super) {
         __extends(PlunginSkeletenBase, _super);
-        function PlunginSkeletenBase(skeleton) {
-            var _this = _super.call(this) || this;
+        function PlunginSkeletenBase(skeleton, precision) {
+            var _this = _super.call(this, precision) || this;
             _this.skeleton = skeleton;
             return _this;
         }
@@ -145,12 +145,6 @@ var aoi;
             var str = '}\n';
             return str;
         };
-        PlunginSkeletenBase.prototype.genFramentCode1 = function () {
-            var str = '#ifdef GL_ES\n' +
-                'precision mediump float;\n' +
-                '#endif\n';
-            return str;
-        };
         PlunginSkeletenBase.prototype.genFramentCode2 = function () {
             var str = 'varying vec2 v_TexCoord;\n' +
                 'uniform sampler2D u_Sampler;\n';
@@ -178,7 +172,7 @@ var aoi;
             this.txtIndex = this.pColloct.getTextureObj();
         };
         return PlunginSkeletenBase;
-    }(aoi.PlunginVoBase));
+    }(aoi.PlunginMainBase));
     aoi.PlunginSkeletenBase = PlunginSkeletenBase;
     __reflect(PlunginSkeletenBase.prototype, "aoi.PlunginSkeletenBase");
 })(aoi || (aoi = {}));

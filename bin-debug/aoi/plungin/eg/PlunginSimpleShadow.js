@@ -11,8 +11,9 @@ var aoi;
     /** 渲染灰度图 */
     var PlunginSimpleShadow = (function (_super) {
         __extends(PlunginSimpleShadow, _super);
-        function PlunginSimpleShadow() {
-            var _this = _super.call(this) || this;
+        function PlunginSimpleShadow(precision) {
+            if (precision === void 0) { precision = 2; }
+            var _this = _super.call(this, precision) || this;
             _this._key = "simpleShadow";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.SIMPLE_SHADOW;

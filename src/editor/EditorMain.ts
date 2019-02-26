@@ -74,10 +74,11 @@ module editor
 
             this._cameraController = new HoverController(this._view.camera);
             this._cameraController.distance = 700;
-            this._cameraController.minTiltAngle = 0;
+            this._cameraController.minTiltAngle = -90;
             this._cameraController.maxTiltAngle = 90;
             this._cameraController.panAngle = 45;
             this._cameraController.tiltAngle = 20;
+            this._cameraController.update();
 
             base.Util.loadScript("res/js/Stats.js");
         }
@@ -211,7 +212,7 @@ module editor
             this.planeMesh = new aoi.Mesh(geo, mat);
             this.planeMesh.y = 40;
             //this.planeMesh.setShowInCameraState(Define.CAM_SHADOW, true);
-            this.planeMesh.addPlugin(new aoi.PlunginParticlePerturbation());
+            this.planeMesh.addPlugin(new aoi.PlunginParticlePerturbation(3));
             var ppm:aoi.PlunginParticleMove = new aoi.PlunginParticleMove();
             this.planeMesh.addPlugin(ppm);
 
@@ -219,6 +220,7 @@ module editor
             //pp.setAreaTexture(new aoi.Material(this.loadedAssets[5]["texture"]));
             pp.setTexture(new aoi.Material(this.loadedAssets[3]["texture"]));
             pp.setData(0.01, 0.01, 0.2, 0.2);
+            //pp.setData(0,0,0,0);
             this.planeMesh.addPlugin(pp);
             this.planeMesh.addPlugin(new aoi.PlunginBillboard());
 
@@ -228,6 +230,10 @@ module editor
             var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(this.loadedAssets[0]["texture"]));
             //plane2.setShowInCameraState(Define.CAM_SHADOW, true);
             plane2.addPlugin(new aoi.PlunginSimple());
+            plane2.addPlugin(new aoi.PlunginSimple(), Define.COLLECT_TYPE_BACK);
+            plane2.addPlugin(new aoi.PlunginGray(), Define.COLLECT_TYPE_BACK);
+            var t:aoi.PlunginCollecter = plane2.getPluginCollector(Define.COLLECT_TYPE_BACK);
+            t.setCullState(GlobelConst.gl.FRONT);
             plane2.addPlugin(new aoi.PlunginSimple(), Define.COLLECT_TYPE_PERTURBATION);
 
             plane2.getPluginCollector().setParamMode(PlunginDefine.NORMAL, false, true, true);
@@ -278,8 +284,8 @@ module editor
             if(this.planeMesh != null)
             {
                 this.vvv2++;
-                this.planeMesh.x = 100 * Math.sin(this.vvv2 * 0.02);
-                this.planeMesh.z = 100 * Math.cos(this.vvv2 * 0.02);
+                //this.planeMesh.x = 100 * Math.sin(this.vvv2 * 0.02);
+                //this.planeMesh.z = 100 * Math.cos(this.vvv2 * 0.02);
             }
             this._view.render();
         }

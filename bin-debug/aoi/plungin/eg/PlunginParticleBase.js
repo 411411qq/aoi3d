@@ -11,8 +11,8 @@ var aoi;
     /** 粒子基础 */
     var PlunginParticleBase = (function (_super) {
         __extends(PlunginParticleBase, _super);
-        function PlunginParticleBase() {
-            var _this = _super.call(this) || this;
+        function PlunginParticleBase(precision) {
+            var _this = _super.call(this, precision) || this;
             _this.limitNum = 1;
             _this.txtIndex = 0;
             return _this;
@@ -129,12 +129,6 @@ var aoi;
             var str = '}\n';
             return str;
         };
-        PlunginParticleBase.prototype.genFramentCode1 = function () {
-            var str = '#ifdef GL_ES\n' +
-                'precision mediump float;\n' +
-                '#endif\n';
-            return str;
-        };
         PlunginParticleBase.prototype.genFramentCode2 = function () {
             var str = 'varying vec2 v_TexCoord;\n' +
                 'varying vec4 v_Time;\n' +
@@ -152,7 +146,7 @@ var aoi;
             return str;
         };
         return PlunginParticleBase;
-    }(aoi.PlunginVoBase));
+    }(aoi.PlunginMainBase));
     aoi.PlunginParticleBase = PlunginParticleBase;
     __reflect(PlunginParticleBase.prototype, "aoi.PlunginParticleBase");
 })(aoi || (aoi = {}));

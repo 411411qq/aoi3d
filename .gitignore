@@ -596,3 +596,7 @@ bin-debug/manager/asset/data/ReferenceBase.js
 bin-debug/manager/asset/data/SkyBoxPluralAsset.js
 bin-debug/manager/asset/PluralAssetManager.js
 bin-debug/aoi/core/SupportsOESTextureFloatLinear.js
+bin-debug/aoi/plungin/eg/PlunginMainBase.js
+bin-debug/aoi/plungin/eg/PlunginParticleBase.js
+bin-debug/aoi/plungin/eg/PlunginParticlePerturbation.js
+bin-debug/aoi/plungin/eg/PlunginParticleShadow.js

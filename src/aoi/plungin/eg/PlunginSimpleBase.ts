@@ -1,8 +1,8 @@
 module aoi {
-    export class PlunginSimpleBase extends PlunginVoBase {
+    export class PlunginSimpleBase extends PlunginMainBase {
         
-        constructor() {
-            super();
+        constructor(precision:number) {
+            super(precision);
             this._key = "";
             this.limitNum = 1;
             this.type = PlunginDefine.SIMPLE;
@@ -54,12 +54,6 @@ module aoi {
             var str:string = '}\n';
             return str;
         }
-
-        private genFramentCode1():string {
-            var str:string = '#ifdef GL_ES\nprecision mediump float;\n#endif\n';
-            return str;
-        }
-
         private genFramentCode2():string {
             var str:string = 'varying vec2 v_TexCoord;\n' +
                 'uniform sampler2D u_Sampler;\n';

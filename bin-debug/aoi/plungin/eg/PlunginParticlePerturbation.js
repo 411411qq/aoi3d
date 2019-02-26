@@ -8,11 +8,11 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var aoi;
 (function (aoi) {
-    /** 粒子基础 */
     var PlunginParticlePerturbation = (function (_super) {
         __extends(PlunginParticlePerturbation, _super);
-        function PlunginParticlePerturbation() {
-            var _this = _super.call(this) || this;
+        function PlunginParticlePerturbation(precision) {
+            if (precision === void 0) { precision = 2; }
+            var _this = _super.call(this, precision) || this;
             _this._key = "ParPer";
             _this.limitNum = 1;
             _this.type = aoi.PlunginDefine.PARTICLE_PERTURBATION;

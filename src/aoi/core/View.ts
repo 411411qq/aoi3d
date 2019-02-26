@@ -163,7 +163,10 @@ module aoi {
                 fbo.setClearColor(1,1,1,1);
             }
             */
-            FrameBufferManager.instance.addFrameBufferObject(Define.FBO_PERTURBATION, 512, 512, this.camera, Define.CAM_PERTURBATION);         
+            if(FrameBufferManager.instance.getFrameBufferObject(Define.FBO_PERTURBATION) == null)
+            {
+                FrameBufferManager.instance.addFrameBufferObject(Define.FBO_PERTURBATION, 1024, 1024, this.camera, Define.CAM_PERTURBATION);
+            }
             
             let root2dList:RenderList = RenderCollecter.instance.getRenderList(Define.CAM_2D);
             this.rootCon2d.createRenderList(this.gl, this.cam2d, Define.CAM_2D, root2dList, true);
