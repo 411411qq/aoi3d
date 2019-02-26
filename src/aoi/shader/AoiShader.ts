@@ -132,7 +132,7 @@ module aoi {
             for(j=0;j<collects.length; j++)
             {
                 let collect:PlunginCollecter = collects[j];
-                var cullState = target.getCullState(gl);
+                var cullState = collect.getCullState(gl);
                 if(AoiShader.cullState != cullState)
                 {
                     gl.cullFace(cullState);

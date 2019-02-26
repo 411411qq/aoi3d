@@ -18,6 +18,8 @@ module aoi {
         private m_shader:AoiShader;
         private m_keyName:string;
 
+        private m_cullState:number;
+
         constructor() {
             this.m_mode = PlunginDefine.NORMAL;
             this.m_hAlpha = false;
@@ -32,6 +34,19 @@ module aoi {
             this.m_keyName = null;
             this.m_textureIndex = 0;
             this.m_dic = {};
+        }
+
+        public getCullState(context:WebGLRenderingContext):number
+        {
+            if(this.m_cullState != -1)
+            {
+                return this.m_cullState;
+            }
+            return context.BACK;
+        }
+        public setCullState(val:number):void
+        {
+            this.m_cullState = val;
         }
 
         public get plunginList():Array<IPlunginVo> {

@@ -26,7 +26,6 @@ module aoi {
                 fog.setFogColor(0,0,0);
                 fog.setFogData(20, 150);
                 (o as Mesh).addPlugin(fog);
-                (o as Mesh).setCullState(GlobelConst.gl.FRONT);
                 (o as Mesh).getPluginCollector(Define.CAM_NORMAL).setParamMode(PlunginDefine.NORMAL, true, true, true);
             }
             o.name = list["name"];

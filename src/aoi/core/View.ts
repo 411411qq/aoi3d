@@ -73,6 +73,9 @@ module aoi {
             this.m_mouseManager.enableMouseListeners();
             GlobelConst.gl = this.gl;
 
+            var sofl:aoi.SupportsOESTextureFloatLinear = new aoi.SupportsOESTextureFloatLinear();
+            sofl.init(this.gl);
+
             var s = this;
             var onClickCanvas = function (evt) {
                 var e = evt || window.event;

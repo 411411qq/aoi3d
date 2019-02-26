@@ -595,3 +595,4 @@ bin-debug/manager/asset/data/PluralAsset.js
 bin-debug/manager/asset/data/ReferenceBase.js
 bin-debug/manager/asset/data/SkyBoxPluralAsset.js
 bin-debug/manager/asset/PluralAssetManager.js
+bin-debug/aoi/core/SupportsOESTextureFloatLinear.js

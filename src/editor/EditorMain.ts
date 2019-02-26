@@ -228,7 +228,7 @@ module editor
             var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(this.loadedAssets[0]["texture"]));
             //plane2.setShowInCameraState(Define.CAM_SHADOW, true);
             plane2.addPlugin(new aoi.PlunginSimple());
-            plane2.addPlugin(new aoi.PlunginSimple(), Define.CAM_PERTURBATION);
+            plane2.addPlugin(new aoi.PlunginSimple(), Define.COLLECT_TYPE_PERTURBATION);
 
             plane2.getPluginCollector().setParamMode(PlunginDefine.NORMAL, false, true, true);
             this.scenceContainer.addChild(plane2);
