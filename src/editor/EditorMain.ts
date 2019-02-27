@@ -217,10 +217,7 @@ module editor
             this.planeMesh.addPlugin(ppm);
 
             let pp:aoi.PlunginPerturbation = new aoi.PlunginPerturbation();
-            //pp.setAreaTexture(new aoi.Material(this.loadedAssets[5]["texture"]));
-            pp.setTexture(new aoi.Material(this.loadedAssets[3]["texture"]));
             pp.setData(0.01, 0.01, 0.2, 0.2);
-            //pp.setData(0,0,0,0);
             this.planeMesh.addPlugin(pp);
             this.planeMesh.addPlugin(new aoi.PlunginBillboard());
 
@@ -235,6 +232,7 @@ module editor
             var t:aoi.PlunginCollecter = plane2.getPluginCollector(Define.COLLECT_TYPE_BACK);
             t.setCullState(GlobelConst.gl.FRONT);
             plane2.addPlugin(new aoi.PlunginSimple(), Define.COLLECT_TYPE_PERTURBATION);
+            plane2.addPlugin(new aoi.PlunginGray(), Define.COLLECT_TYPE_PERTURBATION);
 
             plane2.getPluginCollector().setParamMode(PlunginDefine.NORMAL, false, true, true);
             this.scenceContainer.addChild(plane2);

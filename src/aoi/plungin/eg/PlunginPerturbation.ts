@@ -3,7 +3,6 @@ module aoi {
     export class PlunginPerturbation extends PlunginVoBase
     {
         private _data:math.Vector3D;
-        private _norTexture:IMaterial;
         constructor() {
             super();
             this._key = "Pertur";
@@ -32,10 +31,6 @@ module aoi {
             arr.push(new aoi.PlunginWorldPos());
             return arr;
         }
-        public setTexture(val:IMaterial):void
-        {
-            this._norTexture = val;
-        }
         public genTextureIndex():void {
             this.txtIndex = this.pColloct.getTextureObj();
         }
@@ -60,7 +55,6 @@ module aoi {
             str += "vec3 inVec = normalize(vec3(p, 0.0));\n";
             str += "vec3 refractVec = refract(inVec, normal, u_pertur.x);\n";
             str += "texCoord = (v_wpos.xy/v_wpos.w) * 0.5 + 0.5 + refractVec.xy * u_pertur.y;\n";
-            //str += "texCoord = (v_wpos.xy/v_wpos.w) * 0.5 + 0.5 + refractVec.xy * 0.001;\n;";
             return str;
         }
     }
