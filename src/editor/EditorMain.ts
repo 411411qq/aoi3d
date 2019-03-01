@@ -204,6 +204,20 @@ module editor
 
         private onPreLoaded():void
         {
+            var urls:Array<string> = [];
+            urls.push("res/sky/rightcity.jpg");
+            urls.push("res/sky/leftcity.jpg");
+            urls.push("res/sky/botcity.jpg");
+            urls.push("res/sky/topcity.jpg");
+            urls.push("res/sky/frontcity.jpg");
+            urls.push("res/sky/backcity.jpg");
+            let sky = new aoi.SkyBox(urls, 1500);
+            sky.scaleX = -1;
+            sky.scaleY = -1;
+            sky.scaleZ = -1;
+            this.scenceContainer.addChild(sky);
+            sky.addPlugin(new aoi.PlunginSkyBox(), Define.COLLECT_TYPE_PERTURBATION);
+
             var geo:aoi.Geometry = new aoi.Geometry();
             geo.addSubGeometry(this.buildParticleGeometry());
             geo.animator = new aoi.ParticleAnimator();

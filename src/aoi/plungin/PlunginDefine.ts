@@ -70,5 +70,6 @@ module aoi {
         public static ZOOM_BLUR:number = 47;
         public static DEFAULT_COLOR:number = 48;
         public static RONDOM_FUN:number = 49;
+        public static FRAMEOBJEC_BASE:number = 50;
     }
 }

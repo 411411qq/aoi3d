@@ -29,7 +29,7 @@ var aoi;
             _super.prototype.active.call(this, gl, subGeo, target, camera, program, renderType);
             var fbo = aoi.FrameBufferManager.instance.getFrameBufferObject(aoi.Define.FBO_PERTURBATION);
             gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
-            gl.bindTexture(gl.TEXTURE_2D, fbo.texture);
+            gl.bindTexture(gl.TEXTURE_2D, fbo.getTextures(gl));
             gl.uniform1i(program["u_Sampler"], this.txtIndex);
             gl.uniform4fv(program["u_Sampler_uv"], target.material.getOffsetData().elements);
         };

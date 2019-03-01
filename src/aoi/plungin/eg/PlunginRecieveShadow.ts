@@ -26,11 +26,11 @@ module aoi {
         }
         public active(gl:WebGLRenderingContext, subGeo:ISubGeometry, target:IRenderable, camera:ICamera, program:WebGLProgram, renderType:number):void 
         {
-            let fbo:FrameBufferObject = FrameBufferManager.instance.getFrameBufferObject(Define.FBO_SHADOW);
+            let fbo:ObjectDrawerTexture = FrameBufferManager.instance.getFrameBufferObject(Define.FBO_SHADOW);
             if(fbo != null)
             {
                 gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
-                gl.bindTexture(gl.TEXTURE_2D, fbo.texture);
+                gl.bindTexture(gl.TEXTURE_2D, fbo.getTextures(gl));
                 gl.uniform1i(program["u_ShadowMap"], this.txtIndex);
 
                 let mvpLight:math.Matrix4 = new math.Matrix4();

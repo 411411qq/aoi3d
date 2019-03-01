@@ -13,18 +13,18 @@ module aoi {
         {
             this._dic = {};
         }
-        public getFrameBufferObject(type:number):FrameBufferObject
+        public getFrameBufferObject(type:number):ObjectDrawerTexture
         {
             return this._dic[type];
         }
-        public addFrameBufferObject(type:number, width:number, height:number, cam:ICamera, camType:number):FrameBufferObject
+        public addFrameBufferObject(type:number, width:number, height:number, cam:ICamera, camType:number):ObjectDrawerTexture
         {
             if(this._dic[type] != null)
             {
                 this._dic[type].dispose();
                 this._dic[type] = null;
             }
-            var fbo:FrameBufferObject = new FrameBufferObject(camType, width, height, cam);
+            var fbo:ObjectDrawerTexture = new ObjectDrawerTexture(camType, width, height, cam);
             this._dic[type] = fbo;
             return fbo;
         }
@@ -32,8 +32,7 @@ module aoi {
         {
             for(var index in this._dic)
             {
-                var fbo:FrameBufferObject = this._dic[index];
-                fbo.createFrameBuffer(gl);
+                var fbo:ObjectDrawerTexture = this._dic[index];
                 fbo.drawFrameBuffer(gl, container, fbo.type);
             }
         }

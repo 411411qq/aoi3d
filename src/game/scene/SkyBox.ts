@@ -10,11 +10,11 @@ module aoi
 
         private skyRes:SkyBoxPluralAsset;
 
-        constructor(urls:Array<string>, size:number) {
+        constructor(urls:Array<string>, boxSize:number) {
             super(null, null, false);
             this.urls = urls;
             this.reses = [];
-            this.size = size;
+            this.size = boxSize;
             PluralAssetManager.instance.fetch(this.urls, AssetDefine.ASSET_SKYBOX, this, this.onImageLoaded);
         }
 

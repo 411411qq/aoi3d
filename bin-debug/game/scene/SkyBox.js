@@ -10,12 +10,12 @@ var aoi;
 (function (aoi) {
     var SkyBox = (function (_super) {
         __extends(SkyBox, _super);
-        function SkyBox(urls, size) {
+        function SkyBox(urls, boxSize) {
             var _this = _super.call(this, null, null, false) || this;
             _this.loadedNum = 0;
             _this.urls = urls;
             _this.reses = [];
-            _this.size = size;
+            _this.size = boxSize;
             aoi.PluralAssetManager.instance.fetch(_this.urls, aoi.AssetDefine.ASSET_SKYBOX, _this, _this.onImageLoaded);
             return _this;
         }
