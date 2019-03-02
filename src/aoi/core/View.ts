@@ -163,6 +163,7 @@ module aoi {
                 fbo.setClearColor(1,1,1,1);
             }
             */
+            TextureDrawerManager.instance.doDraw(this.gl);
             if(FrameBufferManager.instance.getFrameBufferObject(Define.FBO_PERTURBATION) == null)
             {
                 FrameBufferManager.instance.addFrameBufferObject(Define.FBO_PERTURBATION, 1024, 1024, this.camera, Define.CAM_PERTURBATION);

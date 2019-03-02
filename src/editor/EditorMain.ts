@@ -223,6 +223,14 @@ module editor
             geo.animator = new aoi.ParticleAnimator();
             var mat:aoi.IMaterial = new aoi.Material(this.loadedAssets[0]["texture"]);
 
+            let textList:aoi.TextureDrawList = aoi.TextureDrawerManager.instance.genTextureDrawList();
+            let collect:aoi.PlunginCollecter = new aoi.PlunginCollecter();
+            collect.addPlugin(new aoi.PlunginFrameBufferBase());
+            let colorChange:aoi.PlunginColorChange = new aoi.PlunginColorChange(aoi.PlunginColorChange.MUL);
+            colorChange.setColor(1,0.5,0.5,1);
+            collect.addPlugin(colorChange);
+            textList.addDrawPass(this.loadedAssets[0]["texture"], 512,512,collect);
+
             this.planeMesh = new aoi.Mesh(geo, mat);
             this.planeMesh.y = 40;
             //this.planeMesh.setShowInCameraState(Define.CAM_SHADOW, true);
@@ -238,7 +246,7 @@ module editor
             this.planeMesh.getPluginCollector().setParamMode(PlunginDefine.NORMAL, true, true, true);
             this.scenceContainer.addChild(this.planeMesh);
 
-            var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(this.loadedAssets[0]["texture"]));
+            var plane2:aoi.Mesh = new aoi.Mesh(new aoi.PlaneGeometry(500,500,Define.XZ), new aoi.Material(textList.getLastTexture()));
             //plane2.setShowInCameraState(Define.CAM_SHADOW, true);
             plane2.addPlugin(new aoi.PlunginSimple());
             plane2.addPlugin(new aoi.PlunginSimple(), Define.COLLECT_TYPE_BACK);

@@ -21,8 +21,25 @@ var aoi;
             _this._replaceWeight = 3;
             return _this;
         }
+        PlunginFrameBufferBase.prototype.getPrePlungin = function () {
+            var arr = new Array();
+            arr.push(new aoi.PlunginDefaultTextureColor());
+            return arr;
+        };
+        PlunginFrameBufferBase.prototype.getAttArr = function () {
+            var arr = [];
+            arr.push({ type: 1, name: "a_Position" });
+            arr.push({ type: 2, name: "u_Sampler" });
+            return arr;
+        };
         PlunginFrameBufferBase.prototype.active = function (gl, subGeo, target, camera, program, renderType) {
             _super.prototype.active.call(this, gl, subGeo, target, camera, program, renderType);
+            var buffer = subGeo.getVertexBuffer(gl), FSIZE = subGeo.bytesPerEle, perLen = subGeo.vertexStride;
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            this.initAttributeVariable(gl, program["a_Position"], buffer, 3, FSIZE * perLen, 0);
+            gl.activeTexture(gl["TEXTURE" + this.txtIndex]);
+            gl.bindTexture(gl.TEXTURE_2D, target.material.getTextures(gl));
+            gl.uniform1i(program["u_Sampler"], this.txtIndex);
         };
         PlunginFrameBufferBase.prototype.updateCode = function () {
             this._vertexCode.push(new aoi.OpenGlCodeVo(0, this, this.genVertexCode1));
@@ -31,12 +48,17 @@ var aoi;
             this._fragmentCode.push(new aoi.OpenGlCodeVo(50000, this, this.genFramentCode3));
             this._fragmentCode.push(new aoi.OpenGlCodeVo(90000, this, this.genFramentCode_normal));
         };
+        PlunginFrameBufferBase.prototype.disactive = function (gl, program) {
+            gl.bindBuffer(gl.ARRAY_BUFFER, null);
+            gl.disableVertexAttribArray(program["a_Position"]);
+        };
         PlunginFrameBufferBase.prototype.genVertexCode1 = function () {
             var str = "";
+            str += 'attribute vec4 a_Position;\n';
             str += "varying vec2 v_TexCoord;\n";
             str += "void main() {\n";
-            str += "v_TexCoord = gl_Vertex.xy * 0.5 + 0.5;\n";
-            str += "gl_Position = vec4(gl_Vertex.xyz, 1.0);\n";
+            str += "v_TexCoord = a_Position.xy * 0.5 + 0.5;\n";
+            str += "gl_Position = vec4(a_Position.xyz, 1.0);\n";
             str += "}\n";
             return str;
         };
